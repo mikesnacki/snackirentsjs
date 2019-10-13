@@ -21,5 +21,50 @@ app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
 
+propertyRoutes.route("/Properties").get((req, res)=>{
+    Property.find(function(err, properties){
+        (err) ? console.log(err) : res.json(properties)
+    })
+})
 
+propertyRoutes.route("/:id").get((req, res)=>{
+    let id = req.params.id;
+    Property.findById(id, function(err, property){
+        (err) ? console.log(err) : res.json(property)
+    })
+})
 
+propertyRoutes.route("/Admin").post((req, res)=>{
+    let property = new Property(req.body);
+
+    property.save()
+        .then(property=>{
+            res.status(200).json({"property": `${property} added successfully`})
+        })
+        .catch(err=>{
+            res.status(400).send(`Error adding property, error ${err}`)
+        })
+})
+
+propertyRoutes.route("/update/:id").post((req, res)=>{
+    Property.findById(req.params.id, (err, property)=>{
+        if (!property){
+            res.status(404).send(`Data is not found! error: ${err}`)
+        } else {
+            property.propertyId = req.body.propertyId;
+            property.propertyName = req.body.propertyName;
+            property.propertyAddress = req.body.propertyAddress;
+            property.propertyCity = req.body.propertyCity;
+            property.propertyState = req.body.propertyState;
+            property.propertyZip = req.body.propertyZip;
+            property.propertyStudioUnitsRented = req.body.propertyStudioUnitsRented;
+            property.propertyStudioUnits = req.body.propertyStudioUnits;
+            property.propertyOneBedroomUnitsRented = req.body.propertyOneBedroomUnitsRented;
+            property.propertyOneBedroomUnits = req.body.propertyOneBedroomUnits;
+            property.propertyCatsAllowed = req.body.propertyCatsAllowed;
+            property.propertyDogsAllowed = req.body.propertyDogsAllowed;
+            property.propertyDescription = req.body.propertyDescription;
+            property.propertyImage = req.body.propertyImage;
+        }
+    })
+})
