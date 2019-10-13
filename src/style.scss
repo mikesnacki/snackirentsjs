@@ -1,0 +1,249 @@
+﻿/*----------------------------- ELEMENTAL STYLING -----------------------------*/
+$font-stack: 'Nanum Gothic', sans-serif;
+
+body, html{
+    margin: 0;
+    padding: 0;
+    font-family: $font-stack
+  }
+  
+  ul {
+    padding: 0;
+  }
+  
+  li {
+    margin-right: 5vw;
+  }
+  
+  svg{
+    margin: 0 auto;
+  }
+  
+  h1{
+    font-size: calc(0.5vw + 18px);
+  }
+  
+  h2{
+    font-size: calc(0.5vw + 17px);
+  }
+  
+  h3{
+    font-size: calc(0.5vw + 16px);
+  }
+  
+  h4{
+    font-size: calc(0.5vw + 15px);
+  }
+  
+  h5{
+    font-size: calc(0.5vw + 14px);
+  }
+  
+  h6{
+    font-size: calc(0.5vw + 13px);
+  }
+  
+  p, a{
+    font-size: calc(0.5vw + 12px);
+  }
+  
+  /*----------------------------- GENERAL STYLING -----------------------------*/
+  
+  .flex-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .flex-col{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    margin: 2.5vw;
+  }
+  
+  .align-center{
+    text-align: center;
+  }
+  
+  .space-between{
+    justify-content: space-between;
+  }
+  
+  .center-vertically{
+    margin: auto;
+  }
+  
+  .button-clear{
+    border: none;
+    background-color: inherit;
+    font-size: inherit;
+  }
+  
+  /*----------------------------- HEADER STYLING -----------------------------*/
+  .header{
+    display: inline-flex;
+    position: fixed;
+    top: 0;
+    background-color: #393e46;
+    font-weight: bold;
+    z-index: 200;
+    height:60px;
+    width:100%;
+
+    .header-text{
+        margin: auto auto auto 20px;
+        color: #eee;
+    }
+
+    .menu-bar-true,
+    .menu-bar-false{
+        border: transparent;
+        margin: auto 1vw;
+        background-color: transparent;
+    }
+
+     .line1, 
+     .line2, 
+     .line3 {
+        width: 42px;
+        height: 4px;
+        background-color: #eee;
+        margin: 10px 0;
+        border-radius: 90px;
+        transition: 0.5s
+      }
+      
+    .menu-bar-true{ 
+        .line1 {
+            width: 28px;
+            transform: rotate(-120deg) translate(-18px, -11px);
+        }
+        .line2 {
+            transform: rotate(-90deg)
+        }
+        .line3 {
+            width: 28px;
+            transform: rotate(-60deg) translate(12px, 9px);
+        }
+    }
+  }
+    .nav-links{
+        margin: auto 1vw;
+    }
+    .nav-links:hover{
+        color: #ff9c91;
+    }
+
+  .menu-dropdown-true{
+    position: fixed;
+    transition: all 0.5s ease-in-out; 
+    background-color: #dadddf;
+    z-index: 100;
+    top: 60px;
+    margin: 0 auto;
+    padding: 4.0vh 0 4.0vh;
+    display: block;
+    width:100vw;
+    text-align: center;
+    
+    .nav-links{
+        display: block;
+        margin: 3.5vh auto;
+    }
+  
+  }
+
+  .menu-dropdown-false{
+    position: fixed;
+    display: hidden;
+    top:-25vh;
+    transition: all 0.5s ease-out; 
+    .nav-links{
+        display: inline-block;
+        margin: 3.5vh auto;
+    }
+  }
+
+.nav-links{
+    color:#393e46;
+    font-size: calc(0.5vw + 17px);
+}
+  
+.nav-links:hover {
+    transition: 0.2s;
+    font-weight: 600;
+    color: #ff9c91;
+}
+.admin {
+    margin: 10vh auto 55vh;
+    background-color: #e5e5e5;
+    border-radius: 5px;
+    padding: 1vh 1vw;
+    box-shadow: 2px 2px 2px 0px #3c4245;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.flex-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.flex-col {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.container-padding {
+    padding: 3vh 3vw;
+    align-items: center;
+}
+
+.no-padding-bottom {
+    padding: 0vh 3vw;
+}
+
+.container {
+    padding: 0 3vw;
+    align-items: center;
+}
+
+.container-padding {
+    label, input, select {
+    margin: 0.5vh 1vw;
+    }
+}
+
+.btn-submit {
+    display: block;
+    margin: 0.5vh auto;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box; 
+}
+
+.display-block {
+    display: block;
+}
+
+select, input {
+    width: 180px;
+    height: 30px;
+}
