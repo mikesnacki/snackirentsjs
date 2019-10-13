@@ -7,7 +7,7 @@ interface FetchPropertyDataState {
 
 interface Props{}
 
-export class FetchPropData extends Component<Props, FetchPropertyDataState> {
+export class Properties extends Component<Props, FetchPropertyDataState> {
 
     constructor(props: Props){
         super(props)
