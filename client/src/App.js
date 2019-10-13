@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "../src/style.scss";
 import Header from './components/Header'
 import Home from "./components/Home"
-import {AdminForm} from "./components/Admin"
+import AdminForm from "./components/Admin"
 
 function App() {
   return (
