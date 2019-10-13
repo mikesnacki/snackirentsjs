@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let ObjectId = mongoose.Schema.Types.ObjectId;
+// let ObjectId = mongoose.Schema.Types.ObjectId;
 
 let Property = new Schema({
-    propertyId: ObjectId,
+    // propertyId: ObjectId,
     propertyName: String,
     propertyAddress: String,
     propertyCity: String,
-    propertyState: Number,
+    propertyState: String,
     propertyZip: Number,
     propertyStudioUnitsRented: Number,
     propertyStudioUnits: Number,

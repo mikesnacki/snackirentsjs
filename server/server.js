@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const propertyRoutes = express.Router();
 const PORT = 4000;
 
+let Property = require("./properties.model");
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/properties", propertyRoutes);
@@ -27,7 +29,7 @@ propertyRoutes.route("/Properties").get((req, res)=>{
     })
 })
 
-propertyRoutes.route("/:id").get((req, res)=>{
+propertyRoutes.route("/Properties/:id").get((req, res)=>{
     let id = req.params.id;
     Property.findById(id, function(err, property){
         (err) ? console.log(err) : res.json(property)
@@ -46,7 +48,7 @@ propertyRoutes.route("/Admin").post((req, res)=>{
         })
 })
 
-propertyRoutes.route("/update/:id").post((req, res)=>{
+propertyRoutes.route("/Properties/update/:id").post((req, res)=>{
     Property.findById(req.params.id, (err, property)=>{
         if (!property){
             res.status(404).send(`Data is not found! error: ${err}`)
@@ -65,6 +67,14 @@ propertyRoutes.route("/update/:id").post((req, res)=>{
             property.propertyDogsAllowed = req.body.propertyDogsAllowed;
             property.propertyDescription = req.body.propertyDescription;
             property.propertyImage = req.body.propertyImage;
+
+            property.save()
+            .then(property=>{
+                res.json(`Property ${property} updated`)
+            })
+            .catch(err=>{
+                res.status(400).send(`Error ${err}`)
+            })
         }
     })
 })
