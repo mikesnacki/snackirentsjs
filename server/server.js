@@ -23,20 +23,20 @@ app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);
 });
 
-propertyRoutes.route("/Properties").get((req, res)=>{
+propertyRoutes.route("/").get((req, res)=>{
     Property.find(function(err, properties){
         (err) ? console.log(err) : res.json(properties)
     })
 })
 
-propertyRoutes.route("/Properties/:id").get((req, res)=>{
+propertyRoutes.route("/:id").get((req, res)=>{
     let id = req.params.id;
     Property.findById(id, function(err, property){
         (err) ? console.log(err) : res.json(property)
     })
 })
 
-propertyRoutes.route("/Admin").post((req, res)=>{
+propertyRoutes.route("/add").post((req, res)=>{
     let property = new Property(req.body);
 
     property.save()
@@ -48,7 +48,7 @@ propertyRoutes.route("/Admin").post((req, res)=>{
         })
 })
 
-propertyRoutes.route("/Properties/update/:id").post((req, res)=>{
+propertyRoutes.route("update/:id").post((req, res)=>{
     Property.findById(req.params.id, (err, property)=>{
         if (!property){
             res.status(404).send(`Data is not found! error: ${err}`)

@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Header/>
         <Route path="/" exact component={Home}/>
-        <Route path="/Properties" exact component={Home}/>
+        <Route path="/Properties" exact component={Properties}/>
         <Route path="/Admin" component={AdminForm}/>
       </Router>
     </div>
