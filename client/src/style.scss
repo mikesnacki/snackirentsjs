@@ -63,6 +63,11 @@ body, html{
     justify-content: space-between;
   }
   
+  .space-evenly{
+    justify-content: space-evenly;
+    margin: 1vw;
+  }
+  
   .center-vertically{
     margin: auto;
   }
@@ -170,6 +175,7 @@ body, html{
     font-weight: 600;
     color: #ff9c91;
 }
+
 .admin {
     margin: 10vh 5vw 15vh;
     background-color: #e5e5e5;
@@ -270,4 +276,10 @@ select.admin-inputs {
   svg{
     margin: 1.25vw;
   }
+}
+
+.admin-row{
+  background-color: white;
+  margin: 1vh 1vw;
+  border-radius: 3px;
 }

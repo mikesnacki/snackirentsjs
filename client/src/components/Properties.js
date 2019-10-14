@@ -1,6 +1,7 @@
 ﻿import React, {useState, useEffect} from 'react';
 import { FaCat, FaDog } from 'react-icons/fa';
 import { useWindowDimensions } from "../utilhooks/useWindowDim"
+import {GetProperties} from "../utilhooks/api"
 import axios from 'axios';
 
 const Properties =()=> {
@@ -28,8 +29,8 @@ const Properties =()=> {
     }, [])
 
     return(
-        (isLoading === true) ?
-        (<p>Loading...</p>) :
+        // (isLoading === true) ?
+        // (<p>Loading...</p>) :
         (<div className="container-padding flex-row margin-top">
             {properties.map((prop, key) =>
                 <div

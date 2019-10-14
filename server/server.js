@@ -48,7 +48,7 @@ propertyRoutes.route("/add").post((req, res)=>{
         })
 })
 
-propertyRoutes.route("update/:id").post((req, res)=>{
+propertyRoutes.route("edit/:id").post((req, res)=>{
     Property.findById(req.params.id, (err, property)=>{
         if (!property){
             res.status(404).send(`Data is not found! error: ${err}`)
@@ -76,5 +76,12 @@ propertyRoutes.route("update/:id").post((req, res)=>{
                 res.status(400).send(`Error ${err}`)
             })
         }
+    })
+})
+
+propertyRoutes.route("/delete/:id").delete((req, res)=>{
+    let id = req.params.id;
+    Property.findByIdAndDelete(id, function(err, property){
+        (err) ? console.log(err) : res.json(property)
     })
 })
