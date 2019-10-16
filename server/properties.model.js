@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// let ObjectId = mongoose.Schema.Types.ObjectId;
-
 let Property = new Schema({
-    // propertyId: ObjectId,
     propertyName: String,
     propertyAddress: String,
     propertyCity: String,
@@ -12,13 +9,20 @@ let Property = new Schema({
     propertyZip: Number,
     propertyStudioUnitsRented: Number,
     propertyStudioUnits: Number,
+    propertyStudioRent: Number,
+    propertyStudioSqft: Number,
+    propertyStudioBeds: Number,
+    propertyStudioBaths: Number,
     propertyOneBedroomUnitsRented: Number,
     propertyOneBedroomUnits:  Number,
+    propertyOneBedroomRent: Number,
+    propertyOneBedroomSqft: Number,
+    propertyOneBedroomBeds: Number,
+    propertyOneBedroomBaths: Number,
     propertyCatsAllowed: String,
     propertyDogsAllowed: String,
     propertyDescription: String,
     propertyImage: String,
-    creationDate: [Date]
 });
 
 module.exports = mongoose.model("Property", Property);

@@ -12,12 +12,20 @@ export const Property=(property)=> {
         propertyZip: property.property.propertyZip,
         propertyStudioUnitsRented: property.property.propertyStudioUnitsRented,
         propertyStudioUnits: property.property.propertyStudioUnits,
+        propertyStudioRent: property.property.propertyStudioRent,
+        propertyStudioSqft: property.property.propertyStudioSqft,
+        propertyStudioBeds: property.property.propertyStudioBeds,
+        propertyStudioBaths: property.property.propertyStudioBaths,
         propertyOneBedroomUnitsRented: property.property.propertyOneBedroomUnitsRented,
         propertyOneBedroomUnits:  property.property.propertyOneBedroomUnits,
+        propertyOneBedroomRent: property.property.propertyOneBedroomRent,
+        propertyOneBedroomSqft: property.property.propertyOneBedroomSqft,
+        propertyOneBedroomBeds: property.property.propertyOneBedroomBeds,
+        propertyOneBedroomBaths: property.property.propertyOneBedroomBaths,
         propertyCatsAllowed: property.property.propertyCatsAllowed,
         propertyDogsAllowed: property.property.propertyDogsAllowed,
         propertyDescription: property.property.propertyDescription,
-        propertyImage: property.property.ropertyImage,
+        propertyImage: property.property.propertyImage,
     }
 
     const [propData, setPropData]= useState(propertyData)
@@ -49,12 +57,20 @@ export const Property=(property)=> {
             <div className="flex-col space-evenly"><input name="propertyCity" defaultValue={propData.propertyCity} placeholder="City" onChange={handleChange}/></div>
             <div className="flex-col space-evenly"><input name="propertyState" defaultValue={propData.propertyState} placeholder="State" onChange={handleChange}/></div>
             <div className="flex-col space-evenly"><input name="propertyZip" defaultValue={propData.propertyZip} placeholder="Zip" onChange={handleChange}/></div>
-            <div className="flex-col space-evenly"><input name="propertyStudioUnitsRented" defaultValue={propData.propertyStudioUnitsRented} placeholder="Studios rented" onChange={handleChange}/></div>
-            <div className="flex-col space-evenly"><input name="propertyStudioUnits" defaultValue={propData.propertyStudioUnits} placeholder="Studio units" onChange={handleChange}/></div>
-            <div className="flex-col space-evenly"><input name="propertyOneBedroomUnitsRented" defaultValue={propData.propertyOneBedroomUnitsRented} placeholder="One bedrooms rented" onChange={handleChange}/></div>
-            <div className="flex-col space-evenly"><input name="propertyOneBedroomUnits" defaultValue={propData.propertyOneBedroomUnits} placeholder="One bedroom units" onChange={handleChange}/></div>
-            <div className="flex-col space-evenly"><input name="propertyCatsAllowed" defaultValue={propData.propertyCatsAllowed} placeholder="Cats allowed" onChange={handleChange}/></div>
-            <div className="flex-col space-evenly"><input name="propertyDogsAllowed" defaultValue={propData.propertyDogsAllowed} placeholder="Dogs allowed" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyStudioUnitsRented" defaultValue={propData.propertyStudioUnitsRented} placeholder="Studios Rented" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyStudioUnits" defaultValue={propData.propertyStudioUnits} placeholder="Studio Units" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyStudioRent" defaultValue={propData.propertyStudioRent} placeholder="Studio Rent" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyStudioSqft" defaultValue={propData.propertyStudioSqft} placeholder="Studio Sqft" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyStudioBeds" defaultValue={propData.propertyStudioBeds} placeholder="Studio Beds" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyStudioBaths" defaultValue={propData.propertyStudioBaths} placeholder="Studio Baths" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyOneBedroomUnitsRented" defaultValue={propData.propertyOneBedroomUnitsRented} placeholder="One Bedrooms Rented" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyOneBedroomUnits" defaultValue={propData.propertyOneBedroomUnits} placeholder="One Bedroom Units" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyOneBedroomRent" defaultValue={propData.propertyOneBedroomRent} placeholder="One Bedroom Rent" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyOneBedroomSqft" defaultValue={propData.propertyOneBedroomSqft} placeholder="One Bedroom Sqft" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyOneBedroomBeds" defaultValue={propData.propertyOneBedroomBeds} placeholder="One Bedroom Beds" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyOneBedroomBaths" defaultValue={propData.propertyOneBedroomBaths} placeholder="One Bedroom Baths" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyCatsAllowed" defaultValue={propData.propertyCatsAllowed} placeholder="Cats Allowed" onChange={handleChange}/></div>
+            <div className="flex-col space-evenly"><input name="propertyDogsAllowed" defaultValue={propData.propertyDogsAllowed} placeholder="Dogs Allowed" onChange={handleChange}/></div>
             <div className="flex-col space-evenly"><input name="propertyDescription" defaultValue={propData.propertyDescription} placeholder="Description" onChange={handleChange}/></div>
             <div className="flex-col space-evenly"><input name="propertyImage" defaultValue={propData.propertyImage} placeholder="image" onChange={handleChange}/></div>
             <div className="flex-col space-evenly"><button onClick={()=>editProperty(property.property._id)}>Edit</button></div>

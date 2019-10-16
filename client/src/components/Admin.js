@@ -12,8 +12,16 @@ const AdminForm =()=> {
         propertyZip: "",
         propertyStudioUnitsRented: "",
         propertyStudioUnits: "",
+        propertyStudioRent: "",
+        propertyStudioSqft: "",
+        propertyStudioBeds: "",
+        propertyStudioBaths: "",
         propertyOneBedroomUnitsRented: "",
         propertyOneBedroomUnits:  "",
+        propertyOneBedroomRent: "",
+        propertyOneBedroomSqft: "",
+        propertyOneBedroomBeds: "",
+        propertyOneBedroomBaths: "",
         propertyCatsAllowed: "",
         propertyDogsAllowed: "",
         propertyDescription: "",
@@ -77,12 +85,44 @@ const AdminForm =()=> {
                             <input type="text" name="propertyStudioUnits"  className="admin-inputs" placeholder="Studios" value={newPropData.propertyStudioUnits} onChange={handleChange}></input>
                         </div>
                         <div className="flex-col">
+                            <label>Studios</label>
+                            <input type="text" name="propertyStudioRent"  className="admin-inputs" placeholder="Studio Rent" value={newPropData.propertyStudioRent} onChange={handleChange}></input>
+                        </div>
+                        <div className="flex-col">
+                            <label>Studios</label>
+                            <input type="text" name="propertyStudioSqft"  className="admin-inputs" placeholder="Studio Sqft" value={newPropData.propertyStudioSqft} onChange={handleChange}></input>
+                        </div>
+                        <div className="flex-col">
+                            <label>Studios</label>
+                            <input type="text" name="propertyStudioBeds"  className="admin-inputs" placeholder="Studio Beds" value={newPropData.propertyStudioBeds} onChange={handleChange}></input>
+                        </div>
+                        <div className="flex-col">
+                            <label>Studios</label>
+                            <input type="text" name="propertyStudioBaths"  className="admin-inputs" placeholder="Studio Baths" value={newPropData.propertyStudioBaths} onChange={handleChange}></input>
+                        </div>
+                        <div className="flex-col">
                             <label>One Bedrooms Rented</label>
                             <input type="text" name="propertyOneBedroomUnitsRented" className="admin-inputs" placeholder="One bedrooms rented" value={newPropData.propertyOneBedroomUnitsRented} onChange={handleChange}></input>
                         </div>
                         <div className="flex-col">
                             <label>One Bedrooms</label>
-                            <input type="text" name="propertyOneBedroomUnits" className="admin-inputs" placeholder="One bedrooms" value={newPropData.propertyOneBedroomUnits} onChange={handleChange}></input>
+                            <input type="text" name="propertyOneBedroomUnits" className="admin-inputs" placeholder="One Bedrooms" value={newPropData.propertyOneBedroomUnits} onChange={handleChange}></input>
+                        </div>
+                        <div className="flex-col">
+                            <label>One Bedroom Rent</label>
+                            <input type="text" name="propertyOneBedroomRent"  className="admin-inputs" placeholder="One Bedroom Rent" value={newPropData.propertyOneBedroomRent} onChange={handleChange}></input>
+                        </div>
+                        <div className="flex-col">
+                            <label>Studios</label>
+                            <input type="text" name="propertyStudioSqft"  className="admin-inputs" placeholder="One Bedroom Sqft" value={newPropData.propertyOneBedroomSqft} onChange={handleChange}></input>
+                        </div>
+                        <div className="flex-col">
+                            <label>Studios</label>
+                            <input type="text" name="propertyOneBedroomBeds"  className="admin-inputs" placeholder="One Bedroom Beds" value={newPropData.propertyOneBedroomBeds} onChange={handleChange}></input>
+                        </div>
+                        <div className="flex-col">
+                            <label>Studios</label>
+                            <input type="text" name="propertyOneBedroomBaths"  className="admin-inputs" placeholder="One Bedroom Baths" value={newPropData.propertyOneBedroomBaths} onChange={handleChange}></input>
                         </div>
                         <div className="flex-col fill-width">
                             <label>Cats Allowed</label>
