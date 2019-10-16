@@ -1,43 +1,29 @@
-﻿import React, {useState, useEffect} from 'react';
+﻿import React from 'react';
 import { FaCat, FaDog } from 'react-icons/fa';
 import { useWindowDimensions } from "../utilhooks/useWindowDim"
-import {GetProperties} from "../utilhooks/api"
-import axios from 'axios';
+import {useFetch} from "../utilhooks/useFetch"
 
 const Properties =()=> {
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [isError, setIsError] = useState(false)
-    const [properties, setProperties] = useState([])
+    let properties = []
     const { width } = useWindowDimensions();
     const iconSize = width / 200 + 40;
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true);
-            setIsError(false);
-            try {
-                const result = await axios('http://localhost:4000/properties/')
-                setProperties(result.data)
-            } catch (error) {
-                setIsError(true)
-                console.log(isError)
-            }
-            setIsLoading(false);
-        };
-    fetchData();
-    }, [])
+    const url = 'http://localhost:4000/properties/'
+    const res = useFetch(url)
+    if (!res.error) { properties = res.response } else {console.log(res.error)}
 
     return(
-        // (isLoading === true) ?
-        // (<p>Loading...</p>) :
+        (res.loading || res.error) ?
+        (<p>Loading...</p>) :
         (<div className="container-padding flex-row margin-top">
             {properties.map((prop, key) =>
                 <div
                 className="flex-col property-card" 
                 key={key}>
                     <img src={prop.propertyImage} 
-                    alt={`${prop.propertyName} is a gorgeous and affordable residence`}></img>
+                    alt={`${prop.propertyName} is a gorgeous and affordable residence`}
+                    style={{width: 200, height: 200, marginTop:20, borderRadius:5}}
+                    ></img>
                     <h2>{prop.propertyName}</h2>
                     <h3>{prop.propertyAddress}</h3>
                     <h4>{prop.propertyCity}, {prop.propertyState}, {prop.propertyZip}</h4>

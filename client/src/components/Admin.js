@@ -5,7 +5,6 @@ import axios from 'axios';
 const AdminForm =()=> {  
     
     const initialState = {
-        propertyId: "",
         propertyName: "",
         propertyAddress: "",
         propertyCity: "",
@@ -34,9 +33,7 @@ const AdminForm =()=> {
     }
 
     const handleSubmit=(e)=>{
-        console.log("submit")
         const newProperty = {...newPropData}
-        console.log(`Form submitted`)
 
         axios
             .post('http://localhost:4000/properties/add', newProperty)
@@ -51,9 +48,6 @@ const AdminForm =()=> {
                 <h3 className="align-center">To add a property, enter information below</h3>
                 <form  onSubmit={handleSubmit}>
                     <div className="flex-row container-padding no-padding-bottom">
-                        <div>
-                            <input type="hidden" name="propertyID" className="admin-inputs" value={newPropData.propertyId} onChange={handleChange}></input>
-                        </div>
                         <div className="flex-col">
                             <label>Property Name</label>
                             <input type="text" name="propertyName" className="admin-inputs" placeholder="Property Name" value={newPropData.propertyName} onChange={handleChange}></input>

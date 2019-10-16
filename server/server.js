@@ -48,12 +48,11 @@ propertyRoutes.route("/add").post((req, res)=>{
         })
 })
 
-propertyRoutes.route("edit/:id").post((req, res)=>{
+propertyRoutes.route("/edit/:id").post((req, res)=>{
     Property.findById(req.params.id, (err, property)=>{
         if (!property){
             res.status(404).send(`Data is not found! error: ${err}`)
         } else {
-            property.propertyId = req.body.propertyId;
             property.propertyName = req.body.propertyName;
             property.propertyAddress = req.body.propertyAddress;
             property.propertyCity = req.body.propertyCity;
