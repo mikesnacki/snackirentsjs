@@ -3,6 +3,9 @@ $primary-color:rgb(198,203,239);
 $shadow-color:rgba(198, 203, 239, 0.3);
 $secondary-color: #c6efea;
 $tertiary-color:#efd9c6;
+$fourth-color: #393e46;
+$card-height: 540px;
+$card-width: 325px;
 
 /*----------------------------- KEYFRAMES -----------------------------*/
 @keyframes hover-shadow{
@@ -10,11 +13,15 @@ $tertiary-color:#efd9c6;
   to {box-shadow: 3px 3px 3px $shadow-color}
 }
 
+@keyframes animatetop {
+  from {top:-400px; opacity: 0}
+  to {top:100; opacity: 1}
+}
 
 /*----------------------------- ELEMENTAL STYLING -----------------------------*/
 $font-stack: 'Nanum Gothic', sans-serif;
 
-body, html{
+body, html, textarea{
     margin: 0;
     padding: 0;
     font-family: $font-stack
@@ -61,36 +68,70 @@ body, html{
   }
   
   /*----------------------------- GENERAL STYLING -----------------------------*/
-  
-  .flex-row{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+
+.flex-col {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.container-padding {
+  padding: 3vh 3vw;
+  align-items: center;
+}
+
+.margin-top{
+margin-top: 5vh;
+}
+
+.no-padding-bottom {
+  padding: 0vh 3vw;
+}
+
+.container {
+padding: 0 3vw;
+align-items: center;
+}
+
+.container-padding {
+  label, input, select {
+  margin: 0.5vh 1vw;
   }
-  
-  .align-center{
-    text-align: center;
-  }
-  
-  .space-between{
-    justify-content: space-between;
-  }
-  
-  .space-evenly{
-    justify-content: space-evenly;
-    margin: 1vw;
-  }
-  
-  .center-vertically{
-    margin: auto;
-  }
-  
-  .button-clear{
-    border: none;
-    background-color: inherit;
-    font-size: inherit;
-  }
-  
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.align-center{
+  text-align: center;
+}
+
+.space-between{
+  justify-content: space-between;
+}
+
+.space-evenly{
+  justify-content: space-evenly;
+  margin: 1vw;
+}
+
+.center-vertically{
+  margin: auto;
+}
+
+.button-clear{
+  border: none;
+  background-color: inherit;
+  font-size: inherit;
+}
+
+.display-none {
+  display: none;
+}
+
   /*----------------------------- HEADER STYLING -----------------------------*/
   .header{
     display: inline-flex;
@@ -204,48 +245,12 @@ body, html{
     border-color: #1861ac;
 }
 
-.flex-row {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
-
-.flex-col {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-}
-
-.container-padding {
-    padding: 3vh 3vw;
-    align-items: center;
-}
-
-.margin-top{
-  margin-top: 5vh;
-}
-
-.no-padding-bottom {
-    padding: 0vh 3vw;
-}
-
-.container {
-    padding: 0 3vw;
-    align-items: center;
-}
-
-.container-padding {
-    label, input, select {
-    margin: 0.5vh 1vw;
-    }
-}
-
 .btn-submit {
     display: block;
     margin: 0.5vh auto;
 }
 
-textarea {
+.admin-textarea {
     width: 100%;
     height: 100%;
     border-radius: 3px;
@@ -275,10 +280,11 @@ select.admin-inputs {
 
 .property-card{
   background-color: $primary-color;
-  border-radius: 3px;
+  border-radius: 5px;
   margin: 1.5vh auto;
-  width: 325px;
-  min-height: 450px;
+  width: $card-width;
+  min-height: $card-height;
+
   h1,h2,h3,h4,h5,p{
     display: block;
     text-align: center;
@@ -287,15 +293,23 @@ select.admin-inputs {
   svg{
     margin: 1vw;
   }
+
+  button{
+    padding: 1.5vh 3vw;
+    margin-bottom: 20px;
+    background-color: $secondary-color;
+    color: $fourth-color;
+    border: 2px solid $fourth-color;
+    border-radius: 5px;
+  }
 }
 
 .property-card:hover{
   animation: 0.5s forwards hover-shadow;
 }
 
-.admin-row{
+.edit-row{
   background-color: white;
-  margin: 1vh 1vw;
   border-radius: 3px;
 }
 
@@ -329,4 +343,70 @@ select.admin-inputs {
   border: 3px solid $tertiary-color;
   padding: 6vh 5vw;
   
+}
+
+@keyframes darken {
+  from {};
+  to {background: rgba(0, 0, 0, 0.6)}
+}
+/*----------------------------- MODAL STYLING -----------------------------*/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  padding: 1vh 2vw;
+  position:relative;
+  background: white;
+  border: 2px solid $secondary-color;
+  color: $font-stack;
+  width: $card-width;
+  height: $card-height +60px;
+  top:53%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  animation: animatetop;
+  animation-duration: 0.3s;
+  border-radius: 5px;
+
+  input, textarea{
+    width: 95%;
+    height: 7.5%;
+    border-radius: 5px;
+    border: 3px solid $tertiary-color;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box; 
+    text-align: center;
+    margin: 2px 0px;
+  }
+
+  textarea{
+    margin-top: 3px;
+    height: 30%;
+  }
+
+}
+
+.display-block {
+  display: block;
+  animation: darken 0.3s;
+}
+
+.modal-button{
+  padding: 1.5vh 3vw;
+  background-color: $fourth-color;
+  color: $tertiary-color;
+  border: 2px solid $tertiary-color;
+  border-radius: 5px;
+}
+
+.align-right-button{
+  margin: auto 90%;
+  padding: 10px;
 }

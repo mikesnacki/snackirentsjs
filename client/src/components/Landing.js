@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {} from 'react'
 
 export const Landing =()=>{
     return(
         <div className="landing-container">
             <span className="landing-overlay">
-                <p className="landing-text">Let's get you rented</p>
+                <p className="landing-text">Welcome home.</p>
             </span>
         </div>
     )

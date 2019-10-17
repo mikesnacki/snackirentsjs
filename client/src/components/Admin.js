@@ -147,7 +147,7 @@ const AdminForm =()=> {
                     </div>
                     <div className="flex-col">
                         <label className="display-block">Property Description</label>
-                        <textarea name="propertyDescription" placeholder="Property Description" value={newPropData.propertyDescription} onChange={handleChange}></textarea>
+                        <textarea className="admin-textarea" name="propertyDescription" placeholder="Property Description" value={newPropData.propertyDescription} onChange={handleChange}></textarea>
                     </div>
                     <button type="submit" className="btn-submit">Add Property</button>
                 </form>

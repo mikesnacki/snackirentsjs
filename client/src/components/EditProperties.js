@@ -52,7 +52,7 @@ export const Property=(property)=> {
     }
 
     return(
-        <div className="flex-row admin-row">
+        <div className="flex-row edit-row">
             <div className="flex-col space-evenly">
                 <input name="propertyName" className ="align-center" defaultValue={propData.propertyName} placeholder="Name" onChange={handleChange}/>
             </div>
@@ -132,8 +132,8 @@ const EditProperties = ()=>{
     if (!res.error) { properties = res.response } else {console.log(res.error)}
   
     return(
-        <div className="admin">
-        <h2 className="align-center">Properties</h2>
+        <div className="admin edit">
+        <h2 className="align-center">Edit Properties</h2>
            {
                (properties.length > 0 || properties.length != null)  && res.loading === false ?
                properties.map((property, index)=>(
