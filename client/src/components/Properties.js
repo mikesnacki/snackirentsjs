@@ -18,6 +18,7 @@ const Properties =()=> {
     let properties = []
     const { width } = useWindowDimensions();
     const iconSize = width / 400 + 26;
+
     const res = useFetch(url)
     if (!res.error) { properties = res.response } else {
         console.log(res.error)
@@ -34,11 +35,11 @@ const Properties =()=> {
     return(
         (res.loading || res.error) ?
         (<p className="align-center">Loading...</p>) :
-        (<div className="container-padding flex-row margin-top">
+        (<div className="container-padding flex-row">
             {properties.map((prop, key) =>
                 <animated.div
                 className="flex-col property-card" 
-                key={key}
+                key={key} 
                 onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
                 onMouseLeave={() => set({ xys: [0, 0, 1] })}
                 style={{transform: props.xys.interpolate(trans)}}

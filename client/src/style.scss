@@ -4,7 +4,7 @@ $shadow-color:rgba(198, 203, 239, 0.3);
 $secondary-color: #c6efea;
 $tertiary-color:#efd9c6;
 $fourth-color: #393e46;
-$card-height: 540px;
+$card-height: 440px;
 $card-width: 325px;
 
 /*----------------------------- KEYFRAMES -----------------------------*/
@@ -66,7 +66,6 @@ body, html, textarea{
   p, a{
     font-size: calc(0.5vw + 12px);
   }
-  
   /*----------------------------- GENERAL STYLING -----------------------------*/
 
 .flex-col {
@@ -78,6 +77,7 @@ body, html, textarea{
 .container-padding {
   align-items: center;
   padding-top: 40px;
+  margin: auto;
 }
 
 .margin-top{
@@ -86,11 +86,6 @@ margin-top: 5vh;
 
 .no-padding-bottom {
   padding: 0vh 3vw;
-}
-
-.container {
-padding: 0 3vw;
-align-items: center;
 }
 
 .container-padding {
@@ -103,6 +98,11 @@ align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.flex-row-center{
+  justify-content: center;
+  align-items: center;
 }
 
 .align-center{
@@ -130,6 +130,10 @@ align-items: center;
 
 .display-none {
   display: none;
+}
+
+.no-margin-no-padding{
+  margin:auto;
 }
 
   /*----------------------------- HEADER STYLING -----------------------------*/
@@ -231,18 +235,33 @@ align-items: center;
 }
 
 .admin {
-    margin: 10vh 5vw -56px;
+    margin: 70px auto;
+    width: 70vw;
     background-color: #e5e5e5;
     border-radius: 5px;
-    padding: 1vh 1vw;
     box-shadow: 2px 2px 2px 0px #3c4245;
+    padding: 1vw 3vw;
+    align-items: center;
+    justify-items: center;
 }
 
-
 .btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    color: $fourth-color;
+    background-color: $secondary-color;
+    border-color: $fourth-color;
+    padding: 0.5vh auto;
+    margin: 0.2vh auto;
+    width: 100px;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+  transition: 300ms;
+  color:$secondary-color;
+  background-color: $fourth-color;
+  border-color: $secondary-color;
+  padding: 0.5vh 1.5vw;
+  border-radius: 5px;
 }
 
 .btn-submit {
@@ -271,6 +290,7 @@ align-items: center;
     border-radius: 3px;
     border: none;
     text-align: center;
+    margin: 1vh 1vw;
 }
 
 select.admin-inputs {
@@ -281,14 +301,14 @@ select.admin-inputs {
 .property-card{
   background-color: $primary-color;
   border-radius: 5px;
-  margin: auto;
+  margin: 6vh auto;
   width: $card-width;
   min-height: $card-height;
 
   h1,h2,h3,h4,h5,p{
     display: block;
     text-align: center;
-    margin: 1vh auto;
+    margin: 0.5vh auto;
   }
   svg{
     margin: 1vw;
@@ -302,6 +322,13 @@ select.admin-inputs {
     border: 2px solid $fourth-color;
     border-radius: 5px;
   }
+
+  button:hover{
+    transition: 400ms;
+    background-color: $fourth-color;
+    color: $secondary-color;
+    border: 2px solid $secondary-color;
+  }
 }
 
 .property-card:hover{
@@ -310,16 +337,23 @@ select.admin-inputs {
 
 .edit-row{
   background-color: white;
-  border-radius: 3px;
+  border-radius: 5px;
+  padding: 1vh 0.2vw;
+  input{
+    border-radius: 5px;
+    border: 2px solid $tertiary-color;
+    text-align: center;
+    padding: 0.5vh 0.5vw;
+    margin: 0.2vh 0.2vw;
+  }
 }
+
 
 /*----------------------------- LANDING STYLING -----------------------------*/
 
 .landing-container{
   height: 100vh;
-  margin:auto;
-  padding-bottom: 60px;
-  background-image: url("https://images.unsplash.com/photo-1533263470226-27d56346f62e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60");
+  margin: auto;
   background-color:$secondary-color;
   opacity: 0.75;
   background-repeat: no-repeat;
@@ -341,8 +375,8 @@ select.admin-inputs {
   font-weight: 700;
   color: $tertiary-color;
   border: 3px solid $tertiary-color;
-  padding: 6vh 5vw;
-  
+  padding: 40vh 5vw;
+  margin: auto;
 }
 
 @keyframes darken {
@@ -416,4 +450,52 @@ select.admin-inputs {
 .align-right-button{
   margin: 10px 90%;
   padding: 10px;
+}
+
+.flip-card {
+  position: absolute;
+  right: 0;
+  left:0;
+  top: 0;
+  bottom:0;
+  margin: auto;
+  width: 340px;
+  height: 340px;
+  width: 50;
+  height: 50;
+  cursor: pointer;
+  will-change: transform, opacity;
+}
+
+.front,
+.back {
+  background-size: cover;
+}
+
+.front, .back{
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  font-size: calc(1.4vw + 36px);
+}
+
+
+.front {
+  justify-content: center;
+  background-image: url(https://images.unsplash.com/photo-1495766682737-d96292f4eb4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
+  color: $primary-color;
+}
+
+.back {
+  background-image: url(https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80);
+}
+
+
+.border-secondary{
+  border: 3px solid $secondary-color
+}
+
+.btn-login{
+  height: 40px;
 }

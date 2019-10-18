@@ -15,8 +15,8 @@ export default function Header() {
 
   const links = [
     <Link key={1} className="header-text nav-links" to="/">Home</Link>,
-    <Link key={2} className="header-text nav-links" to="/Properties">Properties</Link>,
-    <Link key={3} className="header-text nav-links" to="/Admin">Admin</Link>,    
+    <Link key={2} className="header-text nav-links" to="/properties">Properties</Link>,
+    <Link key={3} className="header-text nav-links" to="/admin">Admin Login</Link>,
   ]
 
   return (
