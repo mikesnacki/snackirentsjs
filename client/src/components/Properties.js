@@ -1,11 +1,17 @@
 ﻿import React, {useState} from 'react';
-import { FaCat, FaDog, FaBed, FaBath } from 'react-icons/fa';
+import { useSpring, animated } from 'react-spring'
+import { FaCat, FaDog, } from 'react-icons/fa';
 import { useWindowDimensions } from "../utilhooks/useWindowDim"
 import {useFetch} from "../utilhooks/useFetch"
 import ContactModal from "./ContactModal"
 const url = process.env.REACT_APP_API_URL
 
+const calc = (x, y) => [-(y - window.innerHeight / 2) / 400, (x - window.innerWidth / 2) / 400, 1.03]
+const trans = (x, y, s) => `perspective(400px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
+
 const Properties =()=> {
+
+    const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 350, friction: 40 } }))
 
     const [modal, setModal] = useState(false)
     const [property, setProperty] = useState(null)
@@ -30,12 +36,16 @@ const Properties =()=> {
         (<p className="align-center">Loading...</p>) :
         (<div className="container-padding flex-row margin-top">
             {properties.map((prop, key) =>
-                <div
+                <animated.div
                 className="flex-col property-card" 
-                key={key}>
+                key={key}
+                onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+                onMouseLeave={() => set({ xys: [0, 0, 1] })}
+                style={{transform: props.xys.interpolate(trans)}}
+                >
                     <img src={prop.propertyImage} 
                     alt={`${prop.propertyName} is a gorgeous and affordable residence`}
-                    style={{width: 200, height: 200, marginTop:20, borderRadius:5}}
+                    style={{width: 200, height: 200, marginTop:20, borderRadius:5,}}
                     ></img>
                     <h2 value="propertyName">{prop.propertyName}</h2>
                     <p>{prop.propertyAddress}</p>
@@ -48,7 +58,7 @@ const Properties =()=> {
                     <p>{prop.propertyCatsAllowed === "Yes" && <FaCat size={iconSize}/>} 
                     {prop.propertyDogsAllowed ==="Yes" && <FaDog size={iconSize}/>}</p>
                     <button onClick={()=>displayModal(prop.propertyName)}className="button-clear">Contact an associate</button>
-                </div>
+                </animated.div>
             )}
         <ContactModal 
         show={modal}
