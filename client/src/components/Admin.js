@@ -1,6 +1,7 @@
 ﻿import React, {useState} from 'react';
 import EditProperties from './EditProperties'
 import axios from 'axios';
+const url = process.env.REACT_APP_API_URL
 
 const AdminForm =()=> {  
     
@@ -44,7 +45,7 @@ const AdminForm =()=> {
         const newProperty = {...newPropData}
 
         axios
-            .post('http://localhost:4000/properties/add', newProperty)
+            .post(`${url}/add`, newProperty)
             .then(res=> console.log(res.data))
 
         setNewPropData({...initialState})

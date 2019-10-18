@@ -1,8 +1,11 @@
+require('dotenv').config()
 const express = require('express');
-const app = express();
+const nodemailer = require("nodemailer");
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const mongoose = require("mongoose");
+const cors = require('cors');
+
+const app = express();
 const propertyRoutes = express.Router();
 const PORT = 4000;
 
@@ -12,7 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("/properties", propertyRoutes);
 
-mongoose.connect("mongodb://127.0.0.1/properties", {useNewUrlParser: true})
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true})
 const connection = mongoose.connection;
 
 connection.once("open", function(){
@@ -90,5 +93,33 @@ propertyRoutes.route("/delete/:id").delete((req, res)=>{
     let id = req.params.id;
     Property.findByIdAndDelete(id, function(err, property){
         (err) ? console.log(err) : res.json(property)
+    })
+})
+
+const smtpTransport = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    auth:{
+        user: process.env.USER,
+        pass: process.env.PASSWORD
+    }
+})
+
+smtpTransport.verify((error, success)=>{
+    (error) ? console.log(`error establishing smtp ${error}`) : console.log(`${success} reached smtp`)
+})
+
+propertyRoutes.route("/sendemail").post((req, res, next)=>{
+    let name = req.body.name
+    let message = req.body.message
+
+    let mail = {
+        from: name,
+        to: "snackirents@gmail.com",
+        subject: `Rental Inquiry From ${name}`,
+        text: message,
+    }
+
+    smtpTransport.sendMail(mail, (err, data)=>{
+        err ? res.json({msg: "fail"}) : res.json({msg: `${data} sent`})
     })
 })

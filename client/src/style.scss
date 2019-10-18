@@ -363,16 +363,24 @@ select.admin-inputs {
   padding: 1vh 2vw;
   position:relative;
   background: white;
-  border: 2px solid $secondary-color;
   color: $font-stack;
   width: $card-width;
-  height: $card-height +60px;
-  top:53%;
+  height: 82%;
+  top:52%;
   left:50%;
   transform: translate(-50%,-50%);
   animation: animatetop;
   animation-duration: 0.3s;
   border-radius: 5px;
+  border: 3px solid $secondary-color;
+}
+
+.modal-form {
+  height: 97.5%;
+  h2{
+    margin-top: 0px;
+    padding-top: 0px;
+  }
 
   input, textarea{
     width: 95%;
@@ -392,7 +400,6 @@ select.admin-inputs {
   }
 
 }
-
 .display-block {
   display: block;
   animation: darken 0.3s;
@@ -407,6 +414,6 @@ select.admin-inputs {
 }
 
 .align-right-button{
-  margin: auto 90%;
+  margin: 10px 90%;
   padding: 10px;
 }
