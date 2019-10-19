@@ -86,7 +86,7 @@ const AdminForm =()=> {
                             <input type="text" name="propertyStudioUnits"  className="admin-inputs" placeholder="Studios" value={newPropData.propertyStudioUnits} onChange={handleChange}></input>
                         </div>
                         <div className="flex-col">
-                            <label>Studios</label>
+                            <label>Studio Rent</label>
                             <input type="text" name="propertyStudioRent"  className="admin-inputs" placeholder="Studio Rent" value={newPropData.propertyStudioRent} onChange={handleChange}></input>
                         </div>
                         <div className="flex-col">

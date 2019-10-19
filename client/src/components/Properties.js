@@ -38,13 +38,15 @@ const Properties =()=> {
         (<div className="container-padding flex-row">
             {properties.map((prop, key) =>
                 <animated.div
+                id={key}
                 className="flex-col property-card" 
                 key={key} 
                 onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
                 onMouseLeave={() => set({ xys: [0, 0, 1] })}
                 style={{transform: props.xys.interpolate(trans)}}
                 >
-                    <img src={prop.propertyImage} 
+                    <img 
+                    src={prop.propertyImage} 
                     alt={`${prop.propertyName} is a gorgeous and affordable residence`}
                     style={{width: 200, height: 200, marginTop:20, borderRadius:5,}}
                     ></img>
