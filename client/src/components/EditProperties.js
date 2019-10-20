@@ -40,15 +40,13 @@ export const Property=(property)=> {
         }))
     }
 
-    const deleteProperty=(id)=>{
-        axios
-            .delete(`${url}/delete/${id}`)
+    const deleteProperty= async (id)=>{
+         await axios.delete(`${url}/properties/delete/${id}`)
     }
     
-    const editProperty=(id)=>{
+    const editProperty= async (id)=>{
         const editedPropertyData = {...propData}
-        axios
-            .post(`${url}/edit/${id}`, editedPropertyData)
+        await axios.post(`${url}/properties/edit/${id}`, editedPropertyData)
     }
 
     return(
@@ -128,7 +126,7 @@ export const Property=(property)=> {
 
 const EditProperties = ()=>{
     let properties = []
-    const res = useFetch(url)
+    const res = useFetch(`${url}/properties`)
     if (!res.error) { properties = res.response } else {console.log(res.error)}
   
     return(

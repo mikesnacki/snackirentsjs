@@ -16,11 +16,10 @@ export default function Header() {
   const links = [
     <Link key={1} className="header-text nav-links" to="/">Home</Link>,
     <Link key={2} className="header-text nav-links" to="/properties">Properties</Link>,
-    <Link key={3} className="header-text nav-links" to="/admin">Admin Login</Link>,
+    <Link key={3} className="header-text nav-links" to="/login">Admin Login</Link>,
   ]
 
   return (
-
     <div ref={headerRef}>
       <header className="header space-between">
         <h1 className="header-text">Snacki Rents</h1>
