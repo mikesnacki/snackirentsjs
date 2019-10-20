@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom'
 const url = process.env.REACT_APP_API_URL
   
 const Login =()=> {
@@ -7,7 +8,7 @@ const Login =()=> {
     const [authentication, setAuthentication] = useState({
                                         username:"",
                                         password:"",
-                                        authStatus: false,
+                                        loggedIn: false,
                                         redirectTo: null,
                                       })
 
@@ -29,23 +30,27 @@ const Login =()=> {
             password: authentication.password,
         }
 
-        axios.post(`${url}/admins/login`, userInfo)
+        axios.post(`${url}/login`, userInfo)
         .then(resp=>{
             if (resp.status===200){
                 setAuthentication(prevState=>({
                     ...prevState,
-                    authStatus: true,
-                    redirectTo: "/admin"
+                    loggedIn: true,
+                    redirectTo:"/admin"
                 }))
             }
         })
         .catch(err=>console.log(err))
     }
   
-      return (
-        <div className="container-padding margin-top align-center">
+
+        if (authentication.redirectTo) { 
+          return <Redirect to={{pathname: authentication.redirectTo}}/> 
+        } else  
+            return(
+          <div className="container-padding margin-top align-center">
           <h2>You must log in to view the page</h2>
-          <form action="/login">
+          <form>
             <div className="flex-row flex-row-center space-evenly">
                 <label>Username</label>
                 <input name="username" className="admin-inputs border-secondary" value={authentication.username} onChange={handleChange}></input>
@@ -57,7 +62,7 @@ const Login =()=> {
             <button className= "btn-primary btn-login" onClick={login} type="submit">Log in</button>
           </form>
         </div>
-      )
+        )
   }
 
 export default Login

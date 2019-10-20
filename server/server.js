@@ -14,7 +14,16 @@ let Property = require("./properties.model");
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
+
+passport.serializeUser(function(user, done) {
+    done(null, user); 
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user); 
+});
 
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true})
 const connection = mongoose.connection;
@@ -129,14 +138,42 @@ passport.use(new LocalStrategy(
     function(username, password, done) {
       Admin.findOne({ username: username }, function (err, user) {
         if (err) { return done(err); }
-        if (!user) { return done(null, false); }
-        if (!user.verifyPassword(password)) { return done(null, false); }
+        if (!user) {
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+        if (!user.validPassword(password)) {
+            return done(null, false, { message: 'Incorrect password.' });
+          }
         return done(null, user);
       });
     }
-  ));
+  )
+);
 
-app.post("/admins/login", {username: "username", password: "password"})
+app.post(
+    '/login',
+    function (req, res, next) {
+        console.log(req.body)
+        next()
+    },
+    passport.authenticate('local'),
+    (req, res) => {
+        console.log('logged in', req.user);
+        var userInfo = {
+            username: req.user.username,
+            password: req.user.password
+        };
+        res.send(userInfo);
+    }
+)
+
+
+
+app.route("/admins").get((req, res)=>{
+    Admin.find((err, admins)=>{
+        (err) ? console.log(err) : res.json(admins)
+    })
+})
 
 app.route("/admins/add").post((req, res)=>{
     let admin = new Admin(req.body);

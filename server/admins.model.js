@@ -6,4 +6,8 @@ let Admin = new Schema({
     password: String,
 });
 
+Admin.methods.validPassword = function( pwd ) {
+    return ( this.password === pwd );
+};
+
 module.exports = mongoose.model("Admin", Admin);
