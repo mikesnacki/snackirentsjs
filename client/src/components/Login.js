@@ -43,7 +43,6 @@ const Login =()=> {
         .catch(err=>console.log(err))
     }
   
-
         if (authentication.redirectTo) { 
           return <Redirect to={{pathname: authentication.redirectTo}}/> 
         } else  

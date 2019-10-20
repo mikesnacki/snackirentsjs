@@ -167,8 +167,6 @@ app.post(
     }
 )
 
-
-
 app.route("/admins").get((req, res)=>{
     Admin.find((err, admins)=>{
         (err) ? console.log(err) : res.json(admins)
