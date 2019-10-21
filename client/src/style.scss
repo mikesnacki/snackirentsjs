@@ -4,7 +4,7 @@ $shadow-color:rgba(198, 203, 239, 0.3);
 $secondary-color: #c6efea;
 $tertiary-color:#efd9c6;
 $fourth-color: #393e46;
-$card-height: 440px;
+$card-height: 80vh;
 $card-width: 325px;
 
 /*----------------------------- KEYFRAMES -----------------------------*/
@@ -16,6 +16,16 @@ $card-width: 325px;
 @keyframes animatetop {
   from {top:-400px; opacity: 0}
   to {top:100; opacity: 1}
+}
+
+@keyframes infocus {
+  from {transform: scale(1.0)}
+  to {transform: scale(1.05)}
+}
+
+@keyframes outoffocus {
+  from {transform: scale(1.05)}
+  to {transform: scale(1.0)}
 }
 
 /*----------------------------- ELEMENTAL STYLING -----------------------------*/
@@ -301,7 +311,11 @@ select.admin-inputs {
   border-radius: 5px;
   margin: 6vh auto;
   width: $card-width;
-  min-height: $card-height;
+  height: $card-height;
+  animation: 0.5s forwards outoffocus;
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between;
 
   h1,h2,h3,h4,h5,p{
     display: block;
@@ -314,11 +328,11 @@ select.admin-inputs {
 
   button{
     padding: 1.5vh 3vw;
-    margin-bottom: 20px;
     background-color: $secondary-color;
     color: $fourth-color;
     border: 2px solid $fourth-color;
     border-radius: 5px;
+    margin-bottom: 26px;
   }
 
   button:hover{
@@ -330,7 +344,7 @@ select.admin-inputs {
 }
 
 .property-card:hover{
-  animation: 0.5s forwards hover-shadow;
+  animation: 1s forwards infocus;
 }
 
 .edit-row{
@@ -350,6 +364,7 @@ select.admin-inputs {
 /*----------------------------- LANDING STYLING -----------------------------*/
 
 .landing-container{
+  margin-top: 60px;
   height: 100vh;
   margin: auto;
   background-color:$secondary-color;

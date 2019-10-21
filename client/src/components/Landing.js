@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
 import { useSpring, animated as a } from 'react-spring'
 
-export function Landing() {
+const Landing =()=> {
   const [flipped, setFlipped] = useState(false)
   const { transform, opacity } = useSpring({
     opacity: flipped ? 1 : 0,
@@ -22,8 +22,10 @@ export function Landing() {
             className="flip-card back" 
             style={{ opacity, transform: transform.interpolate(t => `${t} rotateX(180deg)`) }}
         >
-            {flipped &&<Link className="nav-links" to="/Properties">Gorgeous apartments, responsive staff, we make living care free. Click to view apartments</Link>}
+            {flipped &&<Link className="nav-links" to="/properties">Gorgeous apartments, responsive staff, we make living care free. Click to view apartments</Link>}
         </a.div>
     </div>
   )
 }
+
+export default Landing
