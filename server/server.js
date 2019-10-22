@@ -158,8 +158,7 @@ app.post(
     },
     passport.authenticate('local'),
     (req, res) => {
-        console.log('logged in', req.user);
-        var userInfo = {
+        let userInfo = {
             username: req.user.username,
             password: req.user.password
         };

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios'
 import {useFetch} from "../utilhooks/useFetch"
+import {Tooltip} from "./Tooltip"
 const url = process.env.REACT_APP_API_URL
 
 export const Property=(property)=> {
@@ -51,69 +52,111 @@ export const Property=(property)=> {
 
     return(
         <div className="flex-row space-evenly edit-row">
+            <Tooltip text="Property Name">
             <div className="flex-col">
                 <input name="propertyName" className ="align-center" defaultValue={propData.propertyName} placeholder="Name" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Address">
             <div className="flex-col">
                 <input name="propertyAddress" className ="align-center" defaultValue={propData.propertyAddress} placeholder="Address" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="City">
             <div className="flex-col">
                 <input name="propertyCity" className ="align-center" defaultValue={propData.propertyCity} placeholder="City" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="State">
             <div className="flex-col">
                 <input name="propertyState" className ="align-center" defaultValue={propData.propertyState} placeholder="State" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Zip Code">
             <div className="flex-col">
                 <input name="propertyZip" className ="align-center" defaultValue={propData.propertyZip} placeholder="Zip" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Studios Rented">
             <div className="flex-col">
                 <input name="propertyStudioUnitsRented" className ="align-center" defaultValue={propData.propertyStudioUnitsRented} placeholder="Studios Rented" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Studio Units">
             <div className="flex-col">
                 <input name="propertyStudioUnits" className ="align-center" defaultValue={propData.propertyStudioUnits} placeholder="Studio Units" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Studio Rent">
             <div className="flex-col">
                 <input name="propertyStudioRent" className ="align-center" defaultValue={propData.propertyStudioRent} placeholder="Studio Rent" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Studio Sqft">
             <div className="flex-col">
                 <input name="propertyStudioSqft" className ="align-center" defaultValue={propData.propertyStudioSqft} placeholder="Studio Sqft" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Studio Beds">
             <div className="flex-col">
                 <input name="propertyStudioBeds" className ="align-center" defaultValue={propData.propertyStudioBeds} placeholder="Studio Beds" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Studio Baths">
             <div className="flex-col">
                 <input name="propertyStudioBaths" className ="align-center" defaultValue={propData.propertyStudioBaths} placeholder="Studio Baths" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="One Bedrooms Rented">
             <div className="flex-col">
                 <input name="propertyOneBedroomUnitsRented" className ="align-center" defaultValue={propData.propertyOneBedroomUnitsRented} placeholder="One Bedrooms Rented" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="One Bedroom Units">
             <div className="flex-col">
                 <input name="propertyOneBedroomUnits" className ="align-center" defaultValue={propData.propertyOneBedroomUnits} placeholder="One Bedroom Units" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="One Bedroom Rent">
             <div className="flex-col">
                 <input name="propertyOneBedroomRent" className ="align-center" defaultValue={propData.propertyOneBedroomRent} placeholder="One Bedroom Rent" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="One Bedroom Sqft">
             <div className="flex-col">
                 <input name="propertyOneBedroomSqft" className ="align-center" defaultValue={propData.propertyOneBedroomSqft} placeholder="One Bedroom Sqft" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="One Bedroom Beds">
             <div className="flex-col">
                 <input name="propertyOneBedroomBeds"className ="align-center"  defaultValue={propData.propertyOneBedroomBeds} placeholder="One Bedroom Beds" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="One Bedroom Baths">
             <div className="flex-col">
                 <input name="propertyOneBedroomBaths" className ="align-center" defaultValue={propData.propertyOneBedroomBaths} placeholder="One Bedroom Baths" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Cats Allowed">
             <div className="flex-col">
                 <input name="propertyCatsAllowed" className ="align-center" defaultValue={propData.propertyCatsAllowed} placeholder="Cats Allowed" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Dogs Allowed">
             <div className="flex-col">
                 <input name="propertyDogsAllowed" className ="align-center" defaultValue={propData.propertyDogsAllowed} placeholder="Dogs Allowed" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Description">
             <div className="flex-col">
                 <input name="propertyDescription" className ="align-center" defaultValue={propData.propertyDescription} placeholder="Description" onChange={handleChange}/>
             </div>
+            </Tooltip>
+            <Tooltip text="Image URL">
             <div className="flex-col">
                 <input name="propertyImage" className ="align-center" defaultValue={propData.propertyImage} placeholder="image" onChange={handleChange}/>
             </div>
+            </Tooltip>
             <div className="flex-col">
                 <button className="btn-primary" onClick={()=>editProperty(property.property._id)}>Edit</button>
             </div>
@@ -121,6 +164,7 @@ export const Property=(property)=> {
                 <button className="btn-primary" onClick={()=>deleteProperty(property.property._id)}>Delete</button>
             </div>
         </div>
+        
     )
 }
 

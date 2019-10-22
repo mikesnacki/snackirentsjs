@@ -355,8 +355,11 @@ select.admin-inputs {
     border-radius: 5px;
     border: 2px solid $tertiary-color;
     text-align: center;
-    padding: 0.5vh 0.5vw;
+    padding: 10px 0.5vw;
     margin: 0.2vh 0.2vw;
+  }
+  button{
+    padding: 10px;
   }
 }
 
@@ -465,6 +468,8 @@ select.admin-inputs {
   padding: 10px;
 }
 
+/*----------------------------- LANDING STYLING -----------------------------*/
+
 .flip-card {
   position: absolute;
   right: 0;
@@ -511,4 +516,27 @@ select.admin-inputs {
 
 .btn-login{
   height: 40px;
+}
+
+/*----------------------------- TOOLTIP STYLING -----------------------------*/
+
+.tooltip-container {
+  position: relative;
+  display: flex;
+}
+
+.tooltip {
+  box-sizing: border-box;
+  position: absolute;
+  width: 160px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -80px;
+  border-radius: 5px;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  padding: 10px 0.5vw;
+  margin-bottom: 5px;
+  color:#fff;
+  text-align: center;
+  font-size: 14px;
 }

@@ -42,6 +42,7 @@ const AdminForm =()=> {
     }
 
     const handleSubmit=(e)=>{
+        e.preventDefault()
         const newProperty = {...newPropData}
 
         axios
