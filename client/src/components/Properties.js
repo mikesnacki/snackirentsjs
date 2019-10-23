@@ -3,6 +3,8 @@ import { FaCat, FaDog, } from 'react-icons/fa';
 import { useWindowDimensions } from "../utilhooks/useWindowDim"
 import {useFetch} from "../utilhooks/useFetch"
 import ContactModal from "./ContactModal"
+import Loading from "./Loading"
+import Error from "./Error"
 const url = process.env.REACT_APP_API_URL
 
 const Properties =()=> {
@@ -26,8 +28,10 @@ const Properties =()=> {
     }
 
     return(
-        (res.loading || res.error) ?
-        (<p className="align-center">Loading...</p>) :
+        (res.loading) ?
+        (<Loading/>) :
+        (res.error) ?
+        (<Error/>) :
         (<div className="container-padding flex-row">
             {properties.map((prop, key) =>
                 <div

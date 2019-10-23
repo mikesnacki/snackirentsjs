@@ -4,7 +4,7 @@ import Landing from './Landing'
 const Home =()=>{
     return(
     <div>
-    <Landing/>
+        <Landing/>
     </div>
     )
 }
