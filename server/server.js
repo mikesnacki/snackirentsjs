@@ -45,20 +45,21 @@ app.listen(PORT, ()=> {
     console.log("Server is running on Port: " + PORT);
 });
 
-app.route("/properties").get((req, res)=>{
+
+app.route("/").get((req, res)=>{
     Property.find((err, properties)=>{
         (err) ? console.log(err) : res.json(properties)
     })
 })
 
-app.route("/properties/:id").get((req, res)=>{
+app.route("/:id").get((req, res)=>{
     let id = req.params.id;
     Property.findById(id, function(err, property){
         (err) ? console.log(err) : res.json(property)
     })
 })
 
-app.route("/properties/add").post((req, res)=>{
+app.route("/add").post((req, res)=>{
     let property = new Property(req.body);
 
     property.save()
@@ -70,7 +71,7 @@ app.route("/properties/add").post((req, res)=>{
         })
 })
 
-app.route("/properties/edit/:id").post((req, res)=>{
+app.route("/edit/:id").post((req, res)=>{
     Property.findById(req.params.id, (err, property)=>{
         if (!property){
             res.status(404).send(`Data is not found! error: ${err}`)
@@ -108,7 +109,7 @@ app.route("/properties/edit/:id").post((req, res)=>{
     })
 })
 
-app.route("/properties/delete/:id").delete((req, res)=>{
+app.route("/delete/:id").delete((req, res)=>{
     let id = req.params.id;
     Property.findByIdAndDelete(id, function(err, property){
         (err) ? console.log(err) : res.json(property)
@@ -127,7 +128,7 @@ smtpTransport.verify((error, success)=>{
     (error) ? console.log(`error establishing smtp ${error}`) : console.log(`${success} reached smtp`)
 })
 
-app.route("/properties/sendemail").post((req, res, next)=>{
+app.route("/sendemail").post((req, res, next)=>{
     let name = req.body.name
     let message = req.body.message
 

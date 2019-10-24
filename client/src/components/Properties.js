@@ -15,7 +15,7 @@ const Properties =()=> {
     const { width } = useWindowDimensions();
     const iconSize = width / 400 + 26;
     
-    const res = useFetch(`${url}/properties`)
+    const res = useFetch(`${url}/`)
     if (!res.error) { properties = res.response } else {
         return(
             <p>Sorry, there's been an error on our end</p>
