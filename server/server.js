@@ -9,12 +9,17 @@ const path=require("path")
 const LocalStrategy = require("passport-local").Strategy;
 
 const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());
+
 
 const PORT = process.env.PORT || 4000;
 let Admin = require("./admins.model");
 let Property = require("./properties.model");
 
-mongoose.connect(process.env.MONGODB_URI || process.env.DATABASE_URL, {useNewUrlParser: true})
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true})
 const connection = mongoose.connection;
 
 if (process.env.NODE_ENV==="production"){
@@ -23,11 +28,6 @@ if (process.env.NODE_ENV==="production"){
         res.sendFile(path.join(__dirname, "client", "build", "index.html"));
     })
 }
-
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(passport.initialize());
 
 passport.serializeUser(function(user, done) {
     done(null, user); 
