@@ -316,10 +316,15 @@ select.admin-inputs {
   text-align-last:center;
 }
 
+.properties-container{
+  margin: 80px auto;
+  padding: 0% 2.5vw;
+}
+
 .property-card{
   background-color: $primary-color;
   border-radius: 5px;
-  margin: 6vh auto;
+  margin: 2vh auto;
   width: $card-width;
   height: $card-height;
   animation: 0.5s forwards outoffocus;

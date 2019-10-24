@@ -32,7 +32,7 @@ const Properties =()=> {
         (<Loading/>) :
         (res.error) ?
         (<Error/>) :
-        (<div className="container-padding flex-row">
+        (<div className="container-padding properties-container flex-row">
             {properties.map((prop, key) =>
                 <div
                 id={key}

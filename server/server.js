@@ -5,10 +5,19 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const passport = require("passport")
+const path=require("path")
 const LocalStrategy = require("passport-local").Strategy;
 
 const app = express();
-const PORT = 4000;
+
+if (process.env.NODE_ENV==="production"){
+    app.use(express.static('client/build'));
+    app.get("*", (req, res)=>{
+        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    })
+}
+
+const PORT = process.env.PORT || 4000;
 let Admin = require("./admins.model");
 let Property = require("./properties.model");
 
