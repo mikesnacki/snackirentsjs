@@ -1,7 +1,6 @@
  
 import React, {useState, useRef } from 'react'
 import axios from 'axios';
-const url = process.env.REACT_APP_API_URL
 
 export default function Modal({ displayModal, show, property }) {
 
@@ -32,7 +31,7 @@ export default function Modal({ displayModal, show, property }) {
 
     const submitForm = async ()=> {
         const sendData =()=>{
-                 axios.post(`${url}/api/properties/sendemail`, {
+                 axios.post(`api/properties/sendemail`, {
                         name: fields.name,
                         email: fields.email,
                         message: `${fields.name} at ${fields.email} / ${fields.phoneNumber} writes: ${fields.message}`,

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom'
-const url = process.env.REACT_APP_API_URL
   
 const Login =()=> {
   
@@ -30,7 +29,7 @@ const Login =()=> {
             password: authentication.password,
         }
 
-        axios.post(`${url}/api/admins/login`, userInfo)
+        axios.post(`/api/admins/login`, userInfo)
         .then(resp=>{
             if (resp.status===200){
                 setAuthentication(prevState=>({

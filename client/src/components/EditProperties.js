@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import axios from 'axios'
 import {useFetch} from "../utilhooks/useFetch"
 import {Tooltip} from "./Tooltip"
-const url = process.env.REACT_APP_API_URL
 
 export const Property=(property)=> {
 
@@ -42,12 +41,12 @@ export const Property=(property)=> {
     }
 
     const deleteProperty= async (id)=>{
-         await axios.delete(`${url}/api/properties/delete/${id}`)
+         await axios.delete(`/api/properties/delete/${id}`)
     }
     
     const editProperty= async (id)=>{
         const editedPropertyData = {...propData}
-        await axios.post(`${url}/api/properties/edit/${id}`, editedPropertyData)
+        await axios.post(`/api/properties/edit/${id}`, editedPropertyData)
     }
 
     return(
@@ -170,7 +169,7 @@ export const Property=(property)=> {
 
 const EditProperties = ()=>{
     let properties = []
-    const res = useFetch(`${url}/api/properties`)
+    const res = useFetch(`/api/properties`)
     if (!res.error) { properties = res.response } else {console.log(res.error)}
   
     return(

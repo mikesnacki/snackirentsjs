@@ -5,7 +5,6 @@ import {useFetch} from "../utilhooks/useFetch"
 import ContactModal from "./ContactModal"
 import Loading from "./Loading"
 import Error from "./Error"
-const url = process.env.REACT_APP_API_URL
 
 const Properties =()=> {
 
@@ -15,7 +14,7 @@ const Properties =()=> {
     const { width } = useWindowDimensions();
     const iconSize = width / 400 + 26;
     
-    const res = useFetch(`${url}/api/properties`)
+    const res = useFetch(`/api/properties`)
     if (!res.error) { properties = res.response } else {
         return(
             <p>Sorry, there's been an error on our end</p>
