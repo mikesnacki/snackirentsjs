@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy;
-const path = require("path")
 
 const app = express();
 app.use(cors());
