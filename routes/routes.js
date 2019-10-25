@@ -1,11 +1,10 @@
 require("dotenv").config()
 const express = require("express");
+const router = express.Router();
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const passport = require("passport")
-const path=require("path")
 const LocalStrategy = require("passport-local").Strategy;
 
 const app = express();
@@ -15,19 +14,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 
 
-const PORT = process.env.PORT || 4000;
-let Admin = require("./admins.model");
-let Property = require("./properties.model");
-
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true})
-const connection = mongoose.connection;
-
-if (process.env.NODE_ENV==="production"){
-    app.use(express.static(path.join(__dirname,"./client/build")));
-    app.get("*", (req, res)=>{
-        res.sendFile(path.join(__dirname, "./client/build/index.html"));
-    })
-}
+let Admin = require("../models/admins.model");
+let Property = require("../models/properties.model");
 
 passport.serializeUser(function(user, done) {
     done(null, user); 
@@ -37,29 +25,20 @@ passport.deserializeUser(function(user, done) {
     done(null, user); 
 });
 
-connection.once("open", ()=>{
-    console.log("MongoDB database connection established successfully")
-})
-
-app.listen(PORT, ()=> {
-    console.log("Server is running on Port: " + PORT);
-});
-
-
-app.route("/").get((req, res)=>{
+router.route("/").get((req, res)=>{
     Property.find((err, properties)=>{
         (err) ? console.log(err) : res.json(properties)
     })
 })
 
-app.route("/:id").get((req, res)=>{
+router.route("/:id").get((req, res)=>{
     let id = req.params.id;
     Property.findById(id, function(err, property){
         (err) ? console.log(err) : res.json(property)
     })
 })
 
-app.route("/add").post((req, res)=>{
+router.route("/add").post((req, res)=>{
     let property = new Property(req.body);
 
     property.save()
@@ -71,7 +50,7 @@ app.route("/add").post((req, res)=>{
         })
 })
 
-app.route("/edit/:id").post((req, res)=>{
+router.route("/edit/:id").post((req, res)=>{
     Property.findById(req.params.id, (err, property)=>{
         if (!property){
             res.status(404).send(`Data is not found! error: ${err}`)
@@ -109,7 +88,7 @@ app.route("/edit/:id").post((req, res)=>{
     })
 })
 
-app.route("/delete/:id").delete((req, res)=>{
+router.route("/delete/:id").delete((req, res)=>{
     let id = req.params.id;
     Property.findByIdAndDelete(id, function(err, property){
         (err) ? console.log(err) : res.json(property)
@@ -128,7 +107,7 @@ smtpTransport.verify((error, success)=>{
     (error) ? console.log(`error establishing smtp ${error}`) : console.log(`${success} reached smtp`)
 })
 
-app.route("/sendemail").post((req, res, next)=>{
+router.route("/sendemail").post((req, res, next)=>{
     let name = req.body.name
     let message = req.body.message
 
@@ -160,7 +139,7 @@ passport.use(new LocalStrategy(
   )
 );
 
-app.post(
+router.post(
     '/login',
     function (req, res, next) {
         console.log(req.body)
@@ -176,13 +155,13 @@ app.post(
     }
 )
 
-app.route("/admins").get((req, res)=>{
+router.route("/admins").get((req, res)=>{
     Admin.find((err, admins)=>{
         (err) ? console.log(err) : res.json(admins)
     })
 })
 
-app.route("/admins/add").post((req, res)=>{
+router.route("/admins/add").post((req, res)=>{
     let admin = new Admin(req.body);
 
     admin.save()
@@ -193,3 +172,5 @@ app.route("/admins/add").post((req, res)=>{
             res.status(400).send(`Error adding admin, error ${err}`)
         })
 })
+
+module.exports = router;
