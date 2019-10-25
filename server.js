@@ -16,7 +16,7 @@ app.use(routes)
 
 const PORT = process.env.PORT || 4000;
 
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true})
+mongoose.connect(process.env.MONGODVB_URI, {useNewUrlParser: true})
 const connection = mongoose.connection;
 
 if (process.env.NODE_ENV==="production"){
