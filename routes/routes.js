@@ -96,6 +96,7 @@ router.route("/api/properties/delete/:id").delete((req, res)=>{
 })
 
 const smtpTransport = nodemailer.createTransport({
+    service: "gmail",
     host: "smtp.gmail.com",
     auth:{
         user: process.env.USER,
@@ -148,20 +149,20 @@ router.post(
     passport.authenticate('local'),
     (req, res) => {
         let userInfo = {
-            username: req.user.username,
-            password: req.user.password
+            user: req.user.username,
+            pass: req.user.password
         };
         res.send(userInfo);
     }
 )
 
-router.route("api/admins").get((req, res)=>{
+router.route("/api/admins").get((req, res)=>{
     Admin.find((err, admins)=>{
         return (err) ? console.log(err) : res.json(admins)
     })
 })
 
-router.route("api/admins/add").post((req, res)=>{
+router.route("/api/admins/add").post((req, res)=>{
     let admin = new Admin(req.body);
 
     admin.save()
