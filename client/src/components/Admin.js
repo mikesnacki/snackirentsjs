@@ -46,7 +46,7 @@ const AdminForm =()=> {
         const newProperty = {...newPropData}
 
         axios
-            .post(`${url}/add`, newProperty)
+            .post(`${url}/api/properties/add`, newProperty)
             .then(res=> console.log(res.data))
 
         setNewPropData({...initialState})

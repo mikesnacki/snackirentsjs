@@ -6,12 +6,14 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy;
+const path = require("path")
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
+
 
 let Admin = require("../models/admins.model");
 let Property = require("../models/properties.model");
@@ -24,20 +26,20 @@ passport.deserializeUser(function(user, done) {
     done(null, user); 
 });
 
-router.route("/").get((req, res)=>{
+router.route("/api/properties").get((req, res)=>{
     Property.find((err, properties)=>{
-        (err) ? console.log(err) : res.json(properties)
+        return (err) ? console.log(err) : res.json(properties)
     })
 })
 
-router.route("/:id").get((req, res)=>{
+router.route("/api/properties/:id").get((req, res)=>{
     let id = req.params.id;
     Property.findById(id, function(err, property){
         (err) ? console.log(err) : res.json(property)
     })
 })
 
-router.route("/add").post((req, res)=>{
+router.route("/api/properties/add").post((req, res)=>{
     let property = new Property(req.body);
 
     property.save()
@@ -49,7 +51,7 @@ router.route("/add").post((req, res)=>{
         })
 })
 
-router.route("/edit/:id").post((req, res)=>{
+router.route("/api/properties/edit/:id").post((req, res)=>{
     Property.findById(req.params.id, (err, property)=>{
         if (!property){
             res.status(404).send(`Data is not found! error: ${err}`)
@@ -87,7 +89,7 @@ router.route("/edit/:id").post((req, res)=>{
     })
 })
 
-router.route("/delete/:id").delete((req, res)=>{
+router.route("/api/properties/delete/:id").delete((req, res)=>{
     let id = req.params.id;
     Property.findByIdAndDelete(id, function(err, property){
         (err) ? console.log(err) : res.json(property)
@@ -106,7 +108,7 @@ smtpTransport.verify((error, success)=>{
     (error) ? console.log(`error establishing smtp ${error}`) : console.log(`${success} reached smtp`)
 })
 
-router.route("/sendemail").post((req, res, next)=>{
+router.route("/api/properties/sendemail").post((req, res, next)=>{
     let name = req.body.name
     let message = req.body.message
 
@@ -139,7 +141,7 @@ passport.use(new LocalStrategy(
 );
 
 router.post(
-    '/login',
+    '/api/admins/login',
     function (req, res, next) {
         console.log(req.body)
         next()
@@ -154,13 +156,13 @@ router.post(
     }
 )
 
-router.route("/admins").get((req, res)=>{
+router.route("api/admins").get((req, res)=>{
     Admin.find((err, admins)=>{
-        (err) ? console.log(err) : res.json(admins)
+        return (err) ? console.log(err) : res.json(admins)
     })
 })
 
-router.route("/admins/add").post((req, res)=>{
+router.route("api/admins/add").post((req, res)=>{
     let admin = new Admin(req.body);
 
     admin.save()
