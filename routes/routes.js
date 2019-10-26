@@ -95,8 +95,11 @@ router.route("/api/properties/delete/:id").delete((req, res)=>{
 })
 
 const smtpTransport = nodemailer.createTransport({
-    service: "Gmail",
-    auth:{
+    service: 'gmail',
+    type: "SMTP",
+    host: "smtp.gmail.com",
+    secure: true,
+    auth: {
         user: process.env.USER,
         pass: process.env.PASSWORD
     }
@@ -118,6 +121,7 @@ router.route("/api/properties/sendemail").post((req, res, next)=>{
     }
 
     smtpTransport.sendMail(mail, (err, data)=>{
+        console.log(err)
         err ? res.json({msg: "fail"}) : res.json({msg: `${data} sent`})
     })
 })
