@@ -31,7 +31,7 @@ export default function Modal({ displayModal, show, property }) {
 
     const submitForm = async ()=> {
         const sendData =()=>{
-                 axios.post(`/api/properties/sendemail`, {
+                axios.post(`/api/properties/sendemail`, {
                         name: fields.name,
                         email: fields.email,
                         message: `${fields.name} at ${fields.email} / ${fields.phoneNumber} writes: ${fields.message}`,
@@ -44,10 +44,10 @@ export default function Modal({ displayModal, show, property }) {
                         isError(true)
                     }
                     })
+                    .then(setFields(initialFields))
                     .catch(err =>{console.log(err)})
         }
         await sendData()
-        setFields(initialFields)
     }
 
     const messageSent = <h2>We've got your message, we will reach out to you</h2>
