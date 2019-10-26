@@ -29,7 +29,7 @@ const Login =()=> {
             password: authentication.password,
         }
 
-        axios.post(`/api/admins/login`, userInfo)
+        axios.post(`/api/login`, userInfo)
         .then(resp=>{
             if (resp.status===200){
                 setAuthentication(prevState=>({

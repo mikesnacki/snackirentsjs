@@ -7,6 +7,8 @@ const routes = require("./routes/routes.js")
 const config = require("config");
 const db = config.get("mongoURI")
 const app = express();
+const passport = require("passport")
+app.use(passport.initialize());
 
 mongoose
     .connect(db, {

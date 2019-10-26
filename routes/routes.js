@@ -3,15 +3,14 @@ const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
-const cors = require("cors");
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy;
 
 const app = express();
-app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
+app.use(passport.session());
 
 
 let Admin = require("../models/admins.model");
@@ -96,7 +95,8 @@ router.route("/api/properties/delete/:id").delete((req, res)=>{
 })
 
 const smtpTransport = nodemailer.createTransport({
-    service: "gmail",
+    service: "Gmail",
+    port: 465,
     host: "smtp.gmail.com",
     auth:{
         user: process.env.USER,
@@ -141,7 +141,7 @@ passport.use(new LocalStrategy(
 );
 
 router.post(
-    '/api/admins/login',
+    '/api/login',
     function (req, res, next) {
         console.log(req.body)
         next()
@@ -149,8 +149,8 @@ router.post(
     passport.authenticate('local'),
     (req, res) => {
         let userInfo = {
-            user: req.user.username,
-            pass: req.user.password
+            username: req.user.username,
+            password: req.user.password
         };
         res.send(userInfo);
     }
@@ -158,7 +158,7 @@ router.post(
 
 router.route("/api/admins").get((req, res)=>{
     Admin.find((err, admins)=>{
-        return (err) ? console.log(err) : res.json(admins)
+        (err) ? console.log(err) : res.json(admins)
     })
 })
 

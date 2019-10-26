@@ -22,7 +22,7 @@ const Landing =()=> {
             className="flip-card back" 
             style={{ opacity, transform: transform.interpolate(t => `${t} rotateX(180deg)`) }}
         >
-            {flipped &&<Link className="nav-links" to="/properties">Gorgeous apartments, responsive staff, we make living care free. Click to view apartments</Link>}
+            <Link className="nav-links" to="/properties">Gorgeous apartments, responsive staff, we make living care free. Click to view apartments</Link>
         </a.div>
     </div>
   )

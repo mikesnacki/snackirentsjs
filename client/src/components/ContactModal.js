@@ -36,15 +36,15 @@ export default function Modal({ displayModal, show, property }) {
                         email: fields.email,
                         message: `${fields.name} at ${fields.email} / ${fields.phoneNumber} writes: ${fields.message}`,
                     })
-                    .then((response, error)=>{
+                    .then((response)=>{
                     if (response.data.msg !== "fail") {
                         isSent(true)
                     }
                     else if (response.data.msg === "fail") {
                         isError(true)
-                        console.log(error)
                     }
-                })
+                    })
+                    .catch(err =>{console.log(err)})
         }
         sendData()
         setFields(initialFields)
