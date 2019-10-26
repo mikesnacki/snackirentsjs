@@ -96,7 +96,6 @@ router.route("/api/properties/delete/:id").delete((req, res)=>{
 
 const smtpTransport = nodemailer.createTransport({
     service: "Gmail",
-    port: 465,
     host: "smtp.gmail.com",
     auth:{
         user: process.env.USER,
@@ -158,7 +157,7 @@ router.post(
 
 router.route("/api/admins").get((req, res)=>{
     Admin.find((err, admins)=>{
-        (err) ? console.log(err) : res.json(admins)
+        return (err) ? console.log(err) : res.json(admins)
     })
 })
 

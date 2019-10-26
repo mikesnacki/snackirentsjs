@@ -46,7 +46,7 @@ export default function Modal({ displayModal, show, property }) {
                     })
                     .catch(err =>{console.log(err)})
         }
-        sendData()
+        await sendData()
         setFields(initialFields)
     }
 
