@@ -7,19 +7,25 @@ const Slider = ({label, absmin, absmax})=>{
         selectmax: 20,
     })
 
+    const breakpoint = (sliders.selectmin + sliders.selectmax) / 2
     const multiplier = 100
+    const subtractor = 10
 
-    const leftSide = (sliders.breakpoint / absmax)
-    const rightSide = 1 - (sliders.breakpoint / absmax)
+
+    const leftSide = (breakpoint / absmax) * multiplier - subtractor
+    const rightSide = (1 - (breakpoint / absmax)) * multiplier - subtractor
 
     const styles = {
         left:{
-            width: `${leftSide * multiplier}%`
+            width: `${leftSide}%`
         },
         right: {
-            width: `${rightSide * multiplier}%`,
+            width: `${rightSide}%`,
         }
     }
+
+    
+    console.log(sliders, styles.left, styles.right)
 
     const changeSlider = (e)=>{
         const name = e.target.name
@@ -28,8 +34,6 @@ const Slider = ({label, absmin, absmax})=>{
         name === "selectmin"
         ? value = parseInt(Math.min(value, sliders.selectmax))
         : value = parseInt(Math.max(value, sliders.selectmin))
-
-        console.log(sliders)
 
         setSliders(prevState=>({
             ...prevState,
