@@ -5,6 +5,7 @@ import {useFetch} from "../utilhooks/useFetch"
 import ContactModal from "./ContactModal"
 import Loading from "./Loading"
 import Error from "./Error"
+import Menu from "./Menu"
 
 const Properties =()=> {
 
@@ -31,7 +32,10 @@ const Properties =()=> {
         (<Loading/>) :
         (res.error) ?
         (<Error/>) :
-        (<div className="container-padding properties-container flex-row">
+        (
+        <div className="container-padding properties-container ">
+        <Menu/>
+        <div className="flex-row">
             {properties.map((prop, key) =>
                 <div
                 id={key}
@@ -63,6 +67,7 @@ const Properties =()=> {
         displayModal={displayModal}
         property={property}
         />
+        </div>
         </div>)
     )
 }

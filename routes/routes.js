@@ -122,7 +122,7 @@ router.route("/api/properties/sendemail").post((req, res, next)=>{
 
     smtpTransport.sendMail(mail, (err, data)=>{
         console.log(err)
-        err ? res.json({msg: "fail"}) : res.json({msg: `${data} sent`})
+        err ? res.json({msg: `error: ${err}`}) : res.json({msg: `${data} sent`})
     })
 })
 
