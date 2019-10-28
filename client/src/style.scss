@@ -133,6 +133,7 @@ margin-top: 5vh;
 .flex-row-center{
   justify-content: center;
   align-items: center;
+  align-content: center;
 }
 
 .align-center{
@@ -623,10 +624,60 @@ select.admin-inputs {
 
 /*----------------------------- SLIDER STYLING -----------------------------*/
 
+.slider-container{
+  height:80px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  height: 15px;
+  background: $tertiary-color;
+  outline: none;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  overflow: hidden;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: $fourth-color;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
 .slider-lower{
-  margin-right: -0.05px;
+  margin-right: -2px;
+  border-radius: 5px 0 0 5px;
 }
 
 .slider-upper{
-  margin-left: 0px;
+  margin-left: -2px;
+  border-radius: 0 5px 5px 0;
+}
+
+.slider-line{
+  display: flex;
+  background: $tertiary-color;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.flex-row-text-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

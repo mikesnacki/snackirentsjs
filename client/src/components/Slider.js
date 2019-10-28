@@ -1,73 +1,55 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-const Slider = ({label, absmin, absmax})=>{
+const Slider = ({label, absmin, absmax, selectmin, selectmax, changeSlider})=>{
    
-    const [sliders, setSliders] = useState({
-        selectmin: 8,
-        selectmax: 20,
-    })
-
-    const breakpoint = (sliders.selectmin + sliders.selectmax) / 2
+    const breakpoint = (selectmin + selectmax) / 2
     const multiplier = 100
-    const subtractor = 10
-
+    const subtractor = 1
 
     const leftSide = (breakpoint / absmax) * multiplier - subtractor
     const rightSide = (1 - (breakpoint / absmax)) * multiplier - subtractor
 
     const styles = {
         left:{
-            width: `${leftSide}%`
+            width: `${Math.max(+leftSide, 0)}%`,
+            margin: "0 auto"
         },
         right: {
-            width: `${rightSide}%`,
+            width: `${Math.max(+rightSide, 0)}%`,
+            margin: "0 auto"
         }
     }
 
-    
-    console.log(sliders, styles.left, styles.right)
-
-    const changeSlider = (e)=>{
-        const name = e.target.name
-        let value = e.target.value
-
-        name === "selectmin"
-        ? value = parseInt(Math.min(value, sliders.selectmax))
-        : value = parseInt(Math.max(value, sliders.selectmin))
-
-        setSliders(prevState=>({
-            ...prevState,
-            [name]: value,
-        }))
-
-    }
-
     return(
-        <div >
-            <label>{label}</label>
-            <div>
-                <span>{absmin}</span>
+        <div 
+        label={label}
+        className="slider-container">
+            <label className="flex-row flex-row-text-center ">{label}</label>
+            <div className="flex-row space-between">
+                <span>{selectmin}</span>
+                <span>{selectmax}</span>
+            </div>
+            <div className="flex-row align-center slider-line">
                 <input 
                     type="range" 
-                    className="slider-lower" 
-                    value={sliders.selectmin} 
-                    name ="selectmin" 
+                    className="slider slider-lower" 
+                    value={selectmin} 
+                    name ={`selectmin`} 
                     min={absmin} 
-                    max={sliders.selectmax-1} 
+                    max={selectmax-1} 
                     onChange={changeSlider}
                     style={styles.left}
                 />
                 <input 
                     type="range" 
-                    className="slider-upper" 
-                    value={sliders.selectmax} 
-                    name ="selectmax" 
-                    min={sliders.selectmin+1} 
+                    className="slider slider-upper" 
+                    value={selectmax} 
+                    name={`selectmax`} 
+                    min={selectmin+1} 
                     max={absmax} 
                     onChange={changeSlider}
                     style={styles.right}
                 />
-                <span>{absmax}</span>
             </div>
         </div>
     )
