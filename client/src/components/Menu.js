@@ -6,29 +6,17 @@ const Menu =()=>{
 
     const [selections, setSelections] = useState({
                                                 propertyCity: null,
-                                                propertyState: null,
-                                                unitRent: {
-                                                    minRent: null,
-                                                    maxRent: null
-                                                },
-                                                unitSqft: {
-                                                    minSqft: null,
-                                                    maxSqft: null
-                                                },
+                                                RentMin: 25,
+                                                RentMax: 75,
+                                                SqftMin: 25,
+                                                SqftMax: 75,
+                                                absmin: 0,
+                                                absmax: 100,
                                                 propertyCatsAllowed: true,
                                                 propertyDogsAllowed: true,
                                                 })
 
     const {propertyCatsAllowed, propertyDogsAllowed} = selections                                            
-
-    const [sliders, setSliders] = useState({
-        absmin: 0,
-        absmax: 100,
-        selectmin: 25,
-        selectmax: 75,
-    })
-
-    const {absmin, absmax, selectmin, selectmax} = sliders
     
     const sliderFields = ["Rent", "Sqft"]
 
@@ -37,12 +25,12 @@ const Menu =()=>{
     }
     
     const setVals =(e)=>{
-        const name = e.target.name
+        const name = e.currentTarget
         let val;
 
     (name === "propertyCatsAllowed") 
-    ? val = selections.propertyCatsAllowed
-    : val = selections.propertyDogsAllowed
+    ? val = propertyCatsAllowed
+    : val = propertyDogsAllowed
 
         setSelections(prevState=>({
             ...prevState,
@@ -52,20 +40,13 @@ const Menu =()=>{
 
     const changeSlider = (e)=>{
         
-        const name = e.target.name
-        let value = e.target.value
-        let index = e.target.index
+        const name = e.currentTarget.name
+        let value = e.currentTarget.value
 
-        name === "selectmin"
-        ? value = parseInt(Math.min(value, selectmax))
-        : value = parseInt(Math.max(value, selectmin))
-
-        setSliders(prevState=>({
+        setSelections(prevState=>({
             ...prevState,
-            [name]: value,
+            [name]: parseInt(value),
         }))
-
-        console.log(index)
     }
 
     return(
@@ -73,18 +54,17 @@ const Menu =()=>{
             {
                 menu && (
                     <div className="flex-row margin-top space-evenly flex-row-center">
-                        <button className="menu-button">City</button>
-                        <button className="menu-button">State</button>
+                        <button className="menu-button menu-button-active">City</button>
                         {
                             sliderFields.map((sliderField, index)=>(
                                 <Slider
+                                key={index}
                                 label={sliderField}
                                 name={sliderField}
-                                key={index}
-                                absmin={absmin} 
-                                absmax={absmax}
-                                selectmin={selectmin}
-                                selectmax={selectmax}
+                                absmin={selections.absmin} 
+                                absmax={selections.absmax}
+                                selectmin={selections[`${sliderField}Min`]} 
+                                selectmax={selections[`${sliderField}Max`]} 
                                 changeSlider={changeSlider}
                                 />
                             ))

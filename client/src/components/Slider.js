@@ -34,7 +34,7 @@ const Slider = ({label, absmin, absmax, selectmin, selectmax, changeSlider})=>{
                     type="range" 
                     className="slider slider-lower" 
                     value={selectmin} 
-                    name ={`selectmin`} 
+                    name ={`${label}Min`} 
                     min={absmin} 
                     max={selectmax-1} 
                     onChange={changeSlider}
@@ -44,7 +44,7 @@ const Slider = ({label, absmin, absmax, selectmin, selectmax, changeSlider})=>{
                     type="range" 
                     className="slider slider-upper" 
                     value={selectmax} 
-                    name={`selectmax`} 
+                    name={`${label}Max`} 
                     min={selectmin+1} 
                     max={absmax} 
                     onChange={changeSlider}
