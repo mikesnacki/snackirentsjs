@@ -1,20 +1,8 @@
 import React, {useState} from 'react'
 import Slider from "./Slider"
 
-const Menu =()=>{
-    const [menu, showMenu] = useState(true)
-
-    const [selections, setSelections] = useState({
-                                                propertyCity: null,
-                                                RentMin: 25,
-                                                RentMax: 75,
-                                                SqftMin: 25,
-                                                SqftMax: 75,
-                                                absmin: 0,
-                                                absmax: 100,
-                                                propertyCatsAllowed: true,
-                                                propertyDogsAllowed: true,
-                                                })
+const Menu =({selections, setSelections})=>{
+    const [menu, showMenu] = useState(false)
 
     const {propertyCatsAllowed, propertyDogsAllowed} = selections                                            
     
@@ -25,7 +13,7 @@ const Menu =()=>{
     }
     
     const setVals =(e)=>{
-        const name = e.currentTarget
+        const name = e.target.name
         let val;
 
     (name === "propertyCatsAllowed") 
@@ -36,6 +24,7 @@ const Menu =()=>{
             ...prevState,
             [name]: !val
         }))
+
     }
 
     const changeSlider = (e)=>{
@@ -71,7 +60,7 @@ const Menu =()=>{
                         }
                         <button 
                             name="propertyCatsAllowed" 
-                            value={selections.propertyCatsAllowed}
+                            value={propertyCatsAllowed}
                             className={selections.propertyCatsAllowed 
                             ? "menu-button menu-button-active" 
                             : "menu-button menu-button-inactive"}
@@ -80,7 +69,7 @@ const Menu =()=>{
                         </button>
                         <button 
                             name ="propertyDogsAllowed" 
-                            value={selections.propertyDogsAllowed}
+                            value={propertyDogsAllowed}
                             className={selections.propertyDogsAllowed 
                             ? "menu-button menu-button-active" 
                             : "menu-button menu-button-inactive"}
@@ -90,6 +79,7 @@ const Menu =()=>{
                     </div>
                 )
             }
+            {!menu &&<p className="align-center">Click to Show Filters</p>}
             <button className={menu ? "arrow arrow-down flex-row" : "arrow arrow-up flex-row"} onClick={setMenu}></button>
         </div>
     )

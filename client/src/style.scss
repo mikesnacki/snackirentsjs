@@ -630,12 +630,13 @@ select.admin-inputs {
 
 .slider {
   -webkit-appearance: none;
-  height: 15px;
+  height: 25px;
   background: $tertiary-color;
   outline: none;
   -webkit-transition: .2s;
   transition: opacity .2s;
   overflow: hidden;
+  opacity: 0.8;
 }
 
 .slider:hover {
@@ -645,8 +646,8 @@ select.admin-inputs {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 15px;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background: $fourth-color;
   cursor: pointer;

@@ -12,6 +12,18 @@ const Properties =()=> {
     let properties = []
     const [modal, setModal] = useState(false)
     const [property, setProperty] = useState(null)
+    const [selections, setSelections] = useState({
+                                                    propertyCity: null,
+                                                    RentMin: 25,
+                                                    RentMax: 75,
+                                                    SqftMin: 25,
+                                                    SqftMax: 75,
+                                                    absmin: 0,
+                                                    absmax: 100,
+                                                    propertyCatsAllowed: true,
+                                                    propertyDogsAllowed: true,
+                                                })
+
     const { width } = useWindowDimensions();
     const iconSize = width / 400 + 26;
     
@@ -34,7 +46,10 @@ const Properties =()=> {
         (<Error/>) :
         (
         <div className="container-padding properties-container ">
-        <Menu/>
+        <Menu 
+        selections={selections}
+        setSelections={setSelections}
+        />
         <div className="flex-row">
             {properties.map((prop, key) =>
                 <div
