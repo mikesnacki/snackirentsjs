@@ -19,8 +19,8 @@ let Property = new Schema({
     propertyOneBedroomSqft: Number,
     propertyOneBedroomBeds: Number,
     propertyOneBedroomBaths: Number,
-    propertyCatsAllowed: String,
-    propertyDogsAllowed: String,
+    propertyCatsAllowed: Boolean,
+    propertyDogsAllowed: Boolean,
     propertyDescription: String,
     propertyImage: String,
 });

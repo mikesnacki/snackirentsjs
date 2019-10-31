@@ -5,8 +5,6 @@ const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy;
-const config = require("config");
-const db = config.get("mongoURI")
 
 const app = express();
 app.use(bodyParser.json());
@@ -73,8 +71,8 @@ router.route("/api/properties/edit/:id").post((req, res)=>{
             property.propertyOneBedroomSqft= req.body.propertyOneBedroomSqft;
             property.propertyOneBedroomBeds= req.body.propertyOneBedroomBeds;
             property.propertyOneBedroomBaths= req.body.propertyOneBedroomBaths;
-            property.propertyCatsAllowed = req.body.propertyCatsAllowed;
-            property.propertyDogsAllowed = req.body.propertyDogsAllowed;
+            property.propertyCatsAllowed = req.body.propertyCatsAllowed 
+            property.propertyDogsAllowed = req.body.propertyDogsAllowed
             property.propertyDescription = req.body.propertyDescription;
             property.propertyImage = req.body.propertyImage;
 

@@ -130,6 +130,12 @@ margin-top: 5vh;
   flex-wrap: wrap;
 }
 
+.flex-row-no-wrap{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
 .flex-row-center{
   justify-content: center;
   align-items: center;
@@ -626,6 +632,7 @@ select.admin-inputs {
 
 .slider-container{
   height:80px;
+  width: 300px;
 }
 
 .slider {
@@ -657,23 +664,21 @@ select.admin-inputs {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #4CAF50;
+  background: $secondary-color;
   cursor: pointer;
 }
 .slider-lower{
-  margin-right: -2px;
-  border-radius: 5px 0 0 5px;
+  border-radius: 25px;
 }
 
 .slider-upper{
-  margin-left: -2px;
-  border-radius: 0 5px 5px 0;
+  border-radius:25px;
 }
 
 .slider-line{
   display: flex;
   background: $tertiary-color;
-  border-radius: 5px;
+  border-radius: 25px;
   align-items: center;
 }
 

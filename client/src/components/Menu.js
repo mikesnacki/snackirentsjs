@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Slider from "./Slider"
 
 const Menu =({selections, setSelections})=>{
-    const [menu, showMenu] = useState(false)
+    const [menu, showMenu] = useState(true)
 
     const {propertyCatsAllowed, propertyDogsAllowed} = selections                                            
     
@@ -34,7 +34,7 @@ const Menu =({selections, setSelections})=>{
 
         setSelections(prevState=>({
             ...prevState,
-            [name]: parseInt(value),
+            [`user${name}`]: parseInt(value),
         }))
     }
 
@@ -49,11 +49,11 @@ const Menu =({selections, setSelections})=>{
                                 <Slider
                                 key={index}
                                 label={sliderField}
-                                name={sliderField}
-                                absmin={selections.absmin} 
-                                absmax={selections.absmax}
-                                selectmin={selections[`${sliderField}Min`]} 
-                                selectmax={selections[`${sliderField}Max`]} 
+                                name={`user${sliderField}`}
+                                absmin={selections[`abs${sliderField}Min`]} 
+                                absmax={selections[`abs${sliderField}Max`]}
+                                selectmin={selections[`user${sliderField}Min`]} 
+                                selectmax={selections[`user${sliderField}Max`]} 
                                 changeSlider={changeSlider}
                                 />
                             ))

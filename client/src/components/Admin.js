@@ -129,16 +129,16 @@ const AdminForm =()=> {
                             <label>Cats Allowed</label>
                             <select name="propertyCatsAllowed"  className="admin-inputs" value={newPropData.propertyCatsAllowed} onChange={handleChange}>
                                 <option value="Select">Select</option>
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>
+                                <option value="No">false</option>
+                                <option value="Yes">true</option>
                             </select>
                         </div>
                         <div className="flex-col fill-width">
                             <label>Dogs Allowed</label>
                             <select name="propertyDogsAllowed" className="admin-inputs" value={newPropData.propertyDogsAllowed} onChange={handleChange}>
                                 <option value="Select">Select</option>
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>
+                                <option value="No">false</option>
+                                <option value="Yes">true</option>
                             </select>
                         </div>
                         <div className="flex-col fill-width">

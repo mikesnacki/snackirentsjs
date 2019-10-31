@@ -13,16 +13,20 @@ const Properties =()=> {
     const [modal, setModal] = useState(false)
     const [property, setProperty] = useState(null)
     const [selections, setSelections] = useState({
-                                                    propertyCity: null,
-                                                    RentMin: 25,
-                                                    RentMax: 75,
-                                                    SqftMin: 25,
-                                                    SqftMax: 75,
-                                                    absmin: 0,
-                                                    absmax: 100,
+                                                    propertyCity: ["Buffalo"],
+                                                    userRentMin: 825,
+                                                    userRentMax: 1445,
+                                                    userSqftMin: 625,
+                                                    userSqftMax: 980,
+                                                    absRentMin: 825,
+                                                    absRentMax: 1445,
+                                                    absSqftMin: 625,
+                                                    absSqftMax: 980,
                                                     propertyCatsAllowed: true,
                                                     propertyDogsAllowed: true,
                                                 })
+
+    console.log(selections)
 
     const { width } = useWindowDimensions();
     const iconSize = width / 400 + 26;
@@ -72,8 +76,8 @@ const Properties =()=> {
                     {Math.max(prop.propertyStudioSqft, prop.propertyOneBedroomSqft)} Square feet</p>
                     <p>${Math.min(prop.propertyStudioRent, prop.propertyOneBedroomRent)} - 
                     {Math.max(prop.propertyStudioRent, prop.propertyOneBedroomRent)}</p>
-                    <p>{prop.propertyCatsAllowed === "Yes" && <FaCat size={iconSize}/>} 
-                    {prop.propertyDogsAllowed ==="Yes" && <FaDog size={iconSize}/>}</p>
+                    <p>{prop.propertyCatsAllowed  && <FaCat size={iconSize}/>} 
+                    {prop.propertyDogsAllowed && <FaDog size={iconSize}/>}</p>
                     <button onClick={()=>displayModal(prop.propertyName)}className="button-clear">Contact an associate</button>
                 </div>
             )}
