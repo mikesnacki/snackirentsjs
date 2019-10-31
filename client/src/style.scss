@@ -139,7 +139,7 @@ margin-top: 5vh;
 .flex-row-center{
   justify-content: center;
   align-items: center;
-  align-content: center;
+  align-content: stretch;
 }
 
 .align-center{
@@ -639,10 +639,8 @@ select.admin-inputs {
   -webkit-appearance: none;
   height: 25px;
   background: $tertiary-color;
-  outline: none;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  overflow: hidden;
+  -webkit-transition: 1.5s;
+  transition: opacity 1.5s;
   opacity: 0.8;
 }
 
@@ -657,7 +655,6 @@ select.admin-inputs {
   height: 25px;
   border-radius: 50%;
   background: $fourth-color;
-  cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
@@ -665,21 +662,22 @@ select.admin-inputs {
   height: 25px;
   border-radius: 50%;
   background: $secondary-color;
-  cursor: pointer;
 }
 .slider-lower{
   border-radius: 25px;
+  overflow: hidden;
+  transition: all 0.5s ease;
 }
 
 .slider-upper{
   border-radius:25px;
+  overflow: hidden;
+  transition: all 0.5s ease;
 }
 
 .slider-line{
-  display: flex;
   background: $tertiary-color;
   border-radius: 25px;
-  align-items: center;
 }
 
 .flex-row-text-center{

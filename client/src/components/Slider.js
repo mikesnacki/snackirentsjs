@@ -1,24 +1,23 @@
 import React from 'react'
 
 const Slider = ({label, absmin, absmax, selectmin, selectmax, changeSlider})=>{
-   
-    const breakpoint = (selectmin + selectmax) / 2
-    const multiplier = 300
-    const subtractor = 25
 
-    const leftSide = (Math.max(((selectmin-absmin) / (absmax-absmin))* multiplier, 40))/multiplier*100 
-    const rightSide = (Math.min(((absmax- absmin) / (absmax - absmin))* multiplier))/multiplier*100 - leftSide
-    const delta = selectmax - selectmin
+    const sliderSize = 300
 
-    console.log(leftSide, rightSide, leftSide + rightSide, delta)
+    const leftSide = (((selectmin - absmin) / (absmax - absmin))* sliderSize)+30
+
+    const rightSide = (((absmax - selectmax) / (absmax - absmin)) * sliderSize) + 30
+    
     const styles = {
         left:{
-            width: `${+leftSide}%`,
+            width: `${+Math.max(leftSide, 300-rightSide)}px`,
         },
         right: {
-            width: `${+rightSide}%`,
+            width: `${+Math.max(rightSide, 300- leftSide)}px`,
         },
     }
+
+    console.log(styles.left.width, styles.right.width)
 
     return(
         <div 
@@ -29,7 +28,7 @@ const Slider = ({label, absmin, absmax, selectmin, selectmax, changeSlider})=>{
                 <span>{selectmin}</span>
                 <span>{selectmax}</span>
             </div>
-            <div className="flex-row-no-wrap space-evenly slider-line">
+            <div className="flex-row-no-wrap space-between slider-line">
                 <input 
                     type="range" 
                     className="slider slider-lower" 
