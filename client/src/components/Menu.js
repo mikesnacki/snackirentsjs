@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Slider from "./Slider"
 
 const Menu =({selections, setSelections})=>{
-    const [menu, showMenu] = useState(true)
+    const [menu, showMenu] = useState(false)
 
     const {propertyCatsAllowed, propertyDogsAllowed} = selections                                            
     
@@ -39,11 +39,11 @@ const Menu =({selections, setSelections})=>{
     }
 
     return(
-        <div >
+        <div className={`property-filters property-filters-${menu}`}>
             {
                 menu && (
                     <div className="flex-row margin-top space-evenly flex-row-center">
-                        <button className="menu-button menu-button-active">City</button>
+                        <h2>Property Filters</h2>
                         {
                             sliderFields.map((sliderField, index)=>(
                                 <Slider
@@ -79,7 +79,7 @@ const Menu =({selections, setSelections})=>{
                     </div>
                 )
             }
-            {!menu &&<p className="align-center">Click to Show Filters</p>}
+            {!menu &&<h2 className="align-center">Click to Show Filters</h2>}
             <button className={menu ? "arrow arrow-down flex-row" : "arrow arrow-up flex-row"} onClick={setMenu}></button>
         </div>
     )

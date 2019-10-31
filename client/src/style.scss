@@ -686,3 +686,22 @@ select.admin-inputs {
   align-items: center;
   justify-content: center;
 }
+
+.property-filters{
+  border: 3px solid $primary-color;
+  width: $card-width + 40;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.property-filters-false{
+  overflow: hidden;
+  height: 120px;
+  transition: height 200ms ease-in-out;
+}
+
+.property-filters-true{
+  overflow: hidden;
+  height: 400px;
+  transition: height 200ms ease-in-out;
+}
