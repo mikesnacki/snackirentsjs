@@ -48,6 +48,18 @@ $card-width: 280px;
   100% { transform: rotate(315deg); }
 }
 
+@keyframes menu-out {
+  0% {
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  100% {
+    max-height: 400px;
+    overflow: hidden;
+  }
+}
+
 /*----------------------------- ELEMENTAL STYLING -----------------------------*/
 $font-stack: 'Nanum Gothic', sans-serif;
 
@@ -155,8 +167,16 @@ margin-top: 5vh;
   margin: 1vw;
 }
 
+.space-around{
+  justify-content: space-around;
+}
+
 .center-vertically{
   margin: auto;
+}
+
+.align-baseline{
+  align-items: flex-end;
 }
 
 .button-clear{
@@ -614,6 +634,8 @@ select.admin-inputs {
   width: 100px;
   height: 40px;
   border-radius: 5px;
+  margin-top: 22px;
+  margin-bottom: 22px;
 }
 
 .menu-button-active {
@@ -634,6 +656,7 @@ select.admin-inputs {
 .slider-container{
   height:80px;
   width: 300px;
+  margin-top: 18px;
 }
 
 .slider {
@@ -689,19 +712,20 @@ select.admin-inputs {
 
 .property-filters{
   border: 3px solid $primary-color;
-  width: $card-width + 40;
   border-radius: 5px;
   margin: auto;
 }
 
-.property-filters-false{
-  overflow: hidden;
-  height: 120px;
-  transition: height 200ms ease-in-out;
+.property-filters-false-narrow{
+  height: 130px;
+  width: 320px;
 }
 
-.property-filters-true{
-  overflow: hidden;
-  height: 340px;
-  transition: height 200ms ease-in-out;
+.property-filters-true-narrow{
+  width: 320px;
+  animation: 500ms ease-out menu-out;
+}
+
+.property-filters-true-wide{
+  animation: 500ms ease-out menu-out;
 }

@@ -13,7 +13,6 @@ const Properties =()=> {
     const [modal, setModal] = useState(false)
     const [property, setProperty] = useState(null)
     const [selections, setSelections] = useState({
-                                                    propertyCity: ["Buffalo"],
                                                     userRentMin: 825,
                                                     userRentMax: 1445,
                                                     userSqftMin: 625,
@@ -25,8 +24,6 @@ const Properties =()=> {
                                                     propertyCatsAllowed: true,
                                                     propertyDogsAllowed: true,
                                                 })
-
-    console.log(selections)
 
     const { width } = useWindowDimensions();
     const iconSize = width / 400 + 26;
@@ -44,11 +41,11 @@ const Properties =()=> {
     }
 
     return(
-        (res.loading) ?
-        (<Loading/>) :
-        (res.error) ?
-        (<Error/>) :
-        (
+        (res.loading) 
+        ? (<Loading/>) 
+        : (res.error)
+        ? (<Error/>) 
+        : (
         <div className="container-padding properties-container ">
         <Menu 
         selections={selections}

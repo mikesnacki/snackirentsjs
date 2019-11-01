@@ -17,8 +17,6 @@ const Slider = ({label, absmin, absmax, selectmin, selectmax, changeSlider})=>{
         },
     }
 
-    console.log(styles.left.width, styles.right.width)
-
     return(
         <div 
         label={label}

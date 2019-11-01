@@ -1,12 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import Slider from "./Slider"
+import { useWindowDimensions } from "../utilhooks/useWindowDim"
 
 const Menu =({selections, setSelections})=>{
     const [menu, showMenu] = useState(false)
-
     const {propertyCatsAllowed, propertyDogsAllowed} = selections                                            
-    
     const sliderFields = ["Rent", "Sqft"]
+    const { width } = useWindowDimensions();
+    const collapseWidth = 700;
+    const menuRef = useRef();
+    const displaySizes = width < collapseWidth ? "narrow" : "wide"
 
     const setMenu =()=>{
         showMenu(!menu)
@@ -24,7 +27,6 @@ const Menu =({selections, setSelections})=>{
             ...prevState,
             [name]: !val
         }))
-
     }
 
     const changeSlider = (e)=>{
@@ -39,11 +41,14 @@ const Menu =({selections, setSelections})=>{
     }
 
     return(
-        <div className={`property-filters property-filters-${menu}`}>
+        <div 
+            ref ={menuRef} 
+            className={`property-filters property-filters-${menu}-${displaySizes}`}
+            >
+            <h2 className="flex-row-text-center">{menu ? `Property Filters` : `Click to show property filters`}</h2>
             {
                 menu && (
-                    <div className="flex-row margin-top space-evenly flex-row-center">
-                        <h2>Property Filters</h2>
+                    <div className="flex-row margin-top space-evenly flex-row-center align-baseline">
                         {
                             sliderFields.map((sliderField, index)=>(
                                 <Slider
@@ -79,7 +84,6 @@ const Menu =({selections, setSelections})=>{
                     </div>
                 )
             }
-            {!menu &&<h2 className="align-center">Click to Show Filters</h2>}
             <button className={menu ? "arrow arrow-down flex-row" : "arrow arrow-up flex-row"} onClick={setMenu}></button>
         </div>
     )
