@@ -94,19 +94,6 @@ router.route("/api/properties/delete/:id").delete((req, res)=>{
     })
 })
 
-const smtpTransport = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true, 
-    auth: {
-        user: process.env.USER,
-        pass: process.env.PASSWORD
-    }
-})
-
-smtpTransport.verify((error, success)=>{
-    (error) ? console.log(`error establishing smtp ${error}`) : console.log(`${success} reached smtp`)
-})
 
 router.route("/api/properties/sendemail").post( async (req, res, next)=>{
     let name = req.body.name
@@ -119,12 +106,25 @@ router.route("/api/properties/sendemail").post( async (req, res, next)=>{
         text: message,
     }
 
-     const transport = smtpTransport.sendMail(mail, (err, data)=>{
+    const transport = nodemailer.createTransport({
+        service: "Gmail",
+        port: 465,
+        secure: true, 
+        auth: {
+            user: process.env.USER,
+            pass: process.env.PASSWORD
+        }
+    })
+    
+    transport.verify((error, success)=>{
+        (error) ? console.log(`error establishing smtp ${error}`) : console.log(`${success} reached smtp`)
+    })
+
+    transport.sendMail(mail, (err, data)=>{
         console.log(err)
         err ? res.json({msg: `error: ${err}`}) : res.json({msg: `${data} sent`})
     })
 
-    await transport()
 })
 
 
