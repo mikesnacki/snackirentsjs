@@ -70,7 +70,7 @@ const Menu =({selections, setSelections})=>{
                             ? "menu-button menu-button-active" 
                             : "menu-button menu-button-inactive"}
                             onClick={setVals}>
-                                {propertyCatsAllowed ? "Cats" : "No Cats"}
+                                {propertyCatsAllowed ? "Cats Allowed" : "Cats & No Cats"}
                         </button>
                         <button 
                             name ="propertyDogsAllowed" 
@@ -79,7 +79,7 @@ const Menu =({selections, setSelections})=>{
                             ? "menu-button menu-button-active" 
                             : "menu-button menu-button-inactive"}
                             onClick={setVals}>
-                                {propertyDogsAllowed ? "Dogs" : "No Dogs"}
+                                {propertyDogsAllowed ? "Dogs Allowed" : "Dogs & No Dogs"}
                         </button>
                     </div>
                 )

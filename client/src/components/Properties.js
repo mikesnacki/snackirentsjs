@@ -21,15 +21,29 @@ const Properties =()=> {
                                                     absRentMax: 1445,
                                                     absSqftMin: 625,
                                                     absSqftMax: 980,
-                                                    propertyCatsAllowed: true,
-                                                    propertyDogsAllowed: true,
+                                                    propertyCatsAllowed: false,
+                                                    propertyDogsAllowed: false,
                                                 })
 
     const { width } = useWindowDimensions();
     const iconSize = width / 400 + 26;
     
     const res = useFetch(`/api/properties`)
-    if (!res.error) { properties = res.response } else {
+    if (!res.error) { 
+        properties = res.response
+        properties = properties.filter(property => 
+            ((selections.propertyCatsAllowed 
+            ? property.propertyCatsAllowed === true 
+            : (property.propertyCatsAllowed === true || property.propertyCatsAllowed === false))
+            && (selections.propertyDogsAllowed 
+            ? property.propertyDogsAllowed === true 
+            : (property.propertyDogsAllowed === true || property.propertyDogsAllowed === false)))
+            && (property.propertyStudioSqft > selections.userSqftMin ||  property.propertyOneBedroomSqft > selections.userSqftMin)
+            && (property.propertyStudioSqft < selections.userSqftMax||  property.propertyOneBedroomSqft < selections.userSqftMax)
+            && (+property.propertyStudioRent > +selections.userRentMin || property.propertyOneBedroomRent > selections.userRentMin)
+            && (+property.propertyStudioRent < +selections.userRentMax || property.propertyOneBedroomRent < selections.userRentMax)
+            )
+     } else {
         return(
             <p>Sorry, there's been an error on our end</p>
         )
@@ -52,7 +66,9 @@ const Properties =()=> {
         setSelections={setSelections}
         />
         <div className="flex-row">
-            {properties.map((prop, key) =>
+            {properties.length === 0 ?
+            <Loading/>
+            : properties.map((prop, key) =>
                 <div
                 id={key}
                 key={key}

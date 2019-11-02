@@ -433,7 +433,7 @@ select.admin-inputs {
 }
 
 .landing-overlay{
-  top: 50%;
+  top: 20%;
   left: 50%;
   text-align: center;
   position: absolute;
@@ -524,44 +524,74 @@ select.admin-inputs {
 
 /*----------------------------- LANDING STYLING -----------------------------*/
 
-.flip-card {
-  position: absolute;
-  right: 0;
-  left:0;
-  top: 0;
-  bottom:0;
-  margin: auto;
+
+.card {
+  position: relative;
   width: 300px;
   height: 300px;
-  width: 50;
-  height: 50;
-  will-change: transform, opacity;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transform-origin: center right;
+  transition: transform 1s;
 }
 
-.front,
-.back {
+
+.card.is-flipped {
+  transform: translateX(-100%) rotateY(-180deg);
+}
+
+.card-face {
+  position: absolute;
+  top: 30vh;
+  width: 300px;
+  height: 300px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
   background-size: cover;
 }
 
-.front, .back{
-  color: white;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  font-size: calc(1.4vw + 36px);
-}
-
-
-.front {
+.card-face-front {
   justify-content: center;
   background-image: url(https://images.unsplash.com/photo-1495766682737-d96292f4eb4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
   color: $primary-color;
 }
 
-.back {
+.card-face-back {
   background-image: url(https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80);
+  transform: rotateY(180deg);
 }
 
+
+// .flip-card {
+//   position: absolute;
+//   right: 0;
+//   left:0;
+//   top: 0;
+//   bottom:0;
+//   margin: auto;
+//   width: 300px;
+//   height: 300px;
+//   width: 50;
+//   height: 50;
+//   perspective: 1000px; 
+//   will-change: transform, opacity;
+// }
+
+
+// .front,
+// .back {
+//   background-size: cover;
+// }
+
+// .front, .back{
+//   color: white;
+//   font-weight: 700;
+//   display: flex;
+//   align-items: center;
+//   font-size: calc(1.4vw + 36px);
+// }
 
 .border-secondary{
   border: 3px solid $secondary-color
@@ -635,7 +665,6 @@ select.admin-inputs {
   height: 40px;
   border-radius: 5px;
   margin-top: 22px;
-  margin-bottom: 22px;
 }
 
 .menu-button-active {
@@ -654,9 +683,9 @@ select.admin-inputs {
 /*----------------------------- SLIDER STYLING -----------------------------*/
 
 .slider-container{
-  height:80px;
+  height:60px;
   width: 300px;
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 .slider {
@@ -713,7 +742,10 @@ select.admin-inputs {
 .prop-links{
   height: 100%;
   width: 100%;
+  font-size: 30px;
+  color: $fourth-color;
   text-align: center;
+  text-justify: center;
   margin-top: 40px;
 }
 
