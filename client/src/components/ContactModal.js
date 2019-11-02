@@ -29,7 +29,7 @@ export default function Modal({ displayModal, show, property }) {
         }))
     }
 
-    const submitForm = async ()=> {
+    const submitForm = ()=> {
         const sendData =()=>{
                 axios.post(`/api/properties/sendemail`, {
                         name: fields.name,
@@ -48,7 +48,7 @@ export default function Modal({ displayModal, show, property }) {
                     .then(setFields(initialFields))
                     .catch(err =>{console.log(err)})
         }
-        await sendData()
+        sendData()
     }
 
     const messageSent = <h2>We've got your message, we will reach out to you</h2>
