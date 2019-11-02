@@ -66,9 +66,8 @@ const Properties =()=> {
         setSelections={setSelections}
         />
         <div className="flex-row">
-            {properties.length === 0 ?
-            <Loading/>
-            : properties.map((prop, key) =>
+            {
+            properties.map((prop, key) =>
                 <div
                 id={key}
                 key={key}
