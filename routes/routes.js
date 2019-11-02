@@ -100,6 +100,7 @@ router.route("/api/properties/sendemail").post( async (req, res, next)=>{
     let message = req.body.message
 
     const transport = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
         service: "Gmail",
         port: 465,
         secure: true, 
