@@ -99,13 +99,6 @@ router.route("/api/properties/sendemail").post( async (req, res, next)=>{
     let name = req.body.name
     let message = req.body.message
 
-    let mail = {
-        from: name,
-        to: "snackirents@gmail.com",
-        subject: `Rental Inquiry From ${name}`,
-        text: message,
-    }
-
     const transport = nodemailer.createTransport({
         service: "Gmail",
         port: 465,
@@ -115,6 +108,13 @@ router.route("/api/properties/sendemail").post( async (req, res, next)=>{
             pass: process.env.PASSWORD
         }
     })
+
+    let mail = {
+        from: name,
+        to: "snackirents@gmail.com",
+        subject: `Rental Inquiry From ${name}`,
+        text: message,
+    }
     
     transport.verify((error, success)=>{
         (error) ? console.log(`error establishing smtp ${error}`) : console.log(`${success} reached smtp`)

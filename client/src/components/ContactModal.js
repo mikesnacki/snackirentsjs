@@ -38,6 +38,7 @@ export default function Modal({ displayModal, show, property }) {
                     })
                     .then((response)=>{
                     if (response.data.msg !== "fail") {
+                        console.log(response.data)
                         isSent(true)
                     }
                     else if (response.data.msg === "fail") {
