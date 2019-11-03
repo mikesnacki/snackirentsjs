@@ -95,9 +95,7 @@ router.route("/api/properties/delete/:id").delete((req, res)=>{
 })
 
 let transport = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+    service: "gmail",
     auth: {
         user: process.env.USER,
         pass: process.env.PASSWORD
