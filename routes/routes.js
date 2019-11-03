@@ -129,7 +129,7 @@ router.post('/api/properties/sendemail', (req,res)=>{
     transport.sendMail(mail, (err, data, info)=>{
         if(err){
             console.log(err)
-            res.json({msg: "fail"})
+            res.json({msg: `fail ${err}`})
         }else{
             console.log('Message sent: ' + info.response);
             res.json({
