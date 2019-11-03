@@ -49,6 +49,7 @@ export default function Modal({ displayModal, show, property }) {
                     .then(setFields(initialFields))
                     .catch(err =>{console.log(err)})
         }
+        console.log(sendData())
         sendData()
     }
 

@@ -94,40 +94,42 @@ router.route("/api/properties/delete/:id").delete((req, res)=>{
     })
 })
 
+let transport = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    service: 'gmail',
+    auth: {
+        type: 'OAuth2',
+        user: process.env.USER,
+        clientId: process.env.CLIENTID,
+        clientSecret: process.env.CLIENTSECRET,
+        refreshToken: process.env.REFRESHTOKEN,
+        accessToken: process.env.ACCESSTOKEN,
+    }
+});
 
-router.route("/api/properties/sendemail").post( async (req, res, next)=>{
+transport.verify((error, success)=>{
+    error && console.log(`error establishing smtp ${error}`)  
+    success && console.log(`reached smtp`)
+})
+
+router.post('/api/properties/sendemail',(req,res)=>{
     let name = req.body.name
     let message = req.body.message
 
-    const transport = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        service: "Gmail",
-        port: 465,
-        secure: true, 
-        auth: {
-            user: process.env.USER,
-            pass: process.env.PASSWORD
-        }
-    })
-
-    let mail = {
+    var mail = {
         from: name,
         to: "snackirents@gmail.com",
         subject: `Rental Inquiry From ${name}`,
         text: message,
-    }
-    
-    transport.verify((error, success)=>{
-        (error) ? console.log(`error establishing smtp ${error}`) : console.log(`${success} reached smtp`)
-    })
+    };
 
     transport.sendMail(mail, (err, data)=>{
         console.log(err)
         err ? res.json({msg: `error: ${err}`}) : res.json({msg: `${data} sent`})
     })
-
 })
-
 
 passport.use(new LocalStrategy(
     function(username, password, done) {
