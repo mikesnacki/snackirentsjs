@@ -99,10 +99,8 @@ let transport = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-        type: 'OAuth2',
         user: process.env.USER,
-        clientId: process.env.CLIENTID,
-        clientSecret: process.env.CLIENTSECRET,
+        pass: process.env.PASSWORD
     },
 });
 
@@ -115,11 +113,6 @@ router.post('/api/properties/sendemail',async (req,res)=>{
         to: "snackirents@gmail.com",
         subject: `Rental Inquiry From ${name}`,
         text: message,
-        auth: {
-            user: process.env.USER,
-            refreshToken: process.env.REFRESHTOKEN,
-            accessToken: process.env.ACCESSTOKEN,
-        },
     };
 
     transport.sendMail(mail, (err, data)=>{
