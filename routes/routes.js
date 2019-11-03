@@ -103,18 +103,8 @@ let transport = nodemailer.createTransport({
         user: process.env.USER,
         clientId: process.env.CLIENTID,
         clientSecret: process.env.CLIENTSECRET,
-        refreshToken: process.env.REFRESHTOKEN,
-        accessToken: process.env.ACCESSTOKEN,
     },
-    tls: {
-        rejectUnauthorized: false
-    }
 });
-
-transport.verify((error, success)=>{
-    error && console.log(`error establishing smtp ${error}`)  
-    success && console.log(`reached smtp`)
-})
 
 router.post('/api/properties/sendemail',async (req,res)=>{
     let name = req.body.name
@@ -125,10 +115,16 @@ router.post('/api/properties/sendemail',async (req,res)=>{
         to: "snackirents@gmail.com",
         subject: `Rental Inquiry From ${name}`,
         text: message,
+        auth: {
+            user: process.env.USER,
+            refreshToken: process.env.REFRESHTOKEN,
+            accessToken: process.env.ACCESSTOKEN,
+        },
     };
 
     transport.sendMail(mail, (err, data)=>{
-        err ? res.json({msg: `error: ${err}`}) : res.json({msg: `${data} sent`})
+        err && (console.log(err))
+        !err && res.json({msg: `${data} sent`})
     })
 })
 
