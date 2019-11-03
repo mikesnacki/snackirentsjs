@@ -29,6 +29,7 @@ export default function Modal({ displayModal, show, property }) {
         }))
     }
 
+
     const submitForm = ()=> {
         const sendData = async ()=>{
                 axios.post(`/api/properties/sendemail`, {
@@ -37,18 +38,21 @@ export default function Modal({ displayModal, show, property }) {
                         message: `${fields.name} at ${fields.email} / ${fields.phoneNumber} writes: ${fields.message}`,
                     })
                     .then((response)=>{
-                    if (response.data.msg !== "fail") {
+                    if (response.data.msg === "success") {
                         console.log(response.data)
                         isSent(true)
                     }
                     else if (response.data.msg === "fail") {
                         console.log(response.data)
                         isError(true)
+                    } else {
+                        console.log(response)
                     }
                     })
                     .then(setFields(initialFields))
                     .catch(err =>{console.log(err)})
         }
+
         sendData()
     }
 

@@ -102,9 +102,20 @@ let transport = nodemailer.createTransport({
         user: process.env.USER,
         pass: process.env.PASSWORD
     },
+    tls: {
+        rejectUnauthorized: false
+    }
 });
 
-router.post('/api/properties/sendemail',async (req,res)=>{
+transport.verify((error, success) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Server is ready to take messages');
+    }
+  });
+
+router.post('/api/properties/sendemail', (req,res)=>{
     let name = req.body.name
     let message = req.body.message
 
@@ -115,9 +126,16 @@ router.post('/api/properties/sendemail',async (req,res)=>{
         text: message,
     };
 
-    transport.sendMail(mail, (err, data)=>{
-        err && (console.log(err))
-        !err && res.json({msg: `${data} sent`})
+    transport.sendMail(mail, (err, data, info)=>{
+        if(err){
+            console.log(err)
+            res.json({msg: "fail"})
+        }else{
+            console.log('Message sent: ' + info.response);
+            res.json({
+                msg: 'success'
+              })
+        }
     })
 })
 
