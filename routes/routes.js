@@ -98,7 +98,6 @@ let transport = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
-    service: 'gmail',
     auth: {
         type: 'OAuth2',
         user: process.env.USER,
@@ -106,6 +105,9 @@ let transport = nodemailer.createTransport({
         clientSecret: process.env.CLIENTSECRET,
         refreshToken: process.env.REFRESHTOKEN,
         accessToken: process.env.ACCESSTOKEN,
+    },
+    tls: {
+        rejectUnauthorized: false
     }
 });
 
@@ -114,7 +116,7 @@ transport.verify((error, success)=>{
     success && console.log(`reached smtp`)
 })
 
-router.post('/api/properties/sendemail',(req,res)=>{
+router.post('/api/properties/sendemail',async (req,res)=>{
     let name = req.body.name
     let message = req.body.message
 
@@ -126,7 +128,6 @@ router.post('/api/properties/sendemail',(req,res)=>{
     };
 
     transport.sendMail(mail, (err, data)=>{
-        console.log(err)
         err ? res.json({msg: `error: ${err}`}) : res.json({msg: `${data} sent`})
     })
 })

@@ -30,7 +30,7 @@ export default function Modal({ displayModal, show, property }) {
     }
 
     const submitForm = ()=> {
-        const sendData =()=>{
+        const sendData = async ()=>{
                 axios.post(`/api/properties/sendemail`, {
                         name: fields.name,
                         email: fields.email,
@@ -49,7 +49,6 @@ export default function Modal({ displayModal, show, property }) {
                     .then(setFields(initialFields))
                     .catch(err =>{console.log(err)})
         }
-        console.log(sendData())
         sendData()
     }
 
