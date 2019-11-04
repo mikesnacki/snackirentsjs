@@ -94,11 +94,28 @@ router.route("/api/properties/delete/:id").delete((req, res)=>{
     })
 })
 
+// let transport = nodemailer.createTransport({
+//     service: "gmail",
+//     auth: {
+//         user: process.env.USER,
+//         pass: process.env.PASSWORD
+//     },
+//     tls: {
+//         rejectUnauthorized: false
+//     }
+// });
+
 let transport = nodemailer.createTransport({
-    service: "gmail",
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
+        type: 'OAuth2',
         user: process.env.USER,
-        pass: process.env.PASSWORD
+        clientId: process.env.CLIENTID,
+        clientSecret: process.env.CLIENTSECRET,
+        refreshToken: process.env.REFRESHTOKEN,
+        accessToken: process.env.ACCESSTOKEN,
     },
     tls: {
         rejectUnauthorized: false
@@ -123,16 +140,15 @@ router.post('/api/properties/sendemail', (req,res)=>{
         subject: `Rental Inquiry From ${name}`,
         text: message,
     };
-
-    transport.sendMail(mail, (err, data, info)=>{
+    
+    console.log("sending email")
+    transport.sendMail(mail, (err, data)=>{
         if(err){
             console.log(err)
             res.json({msg: `fail ${err}`})
-        }else{
-            console.log('Message sent: ' + info.response);
-            res.json({
-                msg: 'success'
-              })
+        } else {
+            console.log(`Message sent`);
+            res.json({msg: 'success'})
         }
     })
 })
