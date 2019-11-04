@@ -1,4 +1,6 @@
-require("dotenv").config()
+const config = require("config");
+const gmailuser = config.get("mongoURI")
+const gmailpass = config.get("mongoURI")
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
@@ -97,8 +99,8 @@ router.route("/api/properties/delete/:id").delete((req, res)=>{
 let transport = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: process.env.USER,
-        pass: process.env.PASSWORD
+        user: gmailuser,
+        pass: gmailpass
     },
     tls: {
         rejectUnauthorized: false
@@ -130,7 +132,7 @@ transport.verify((error, success) => {
     }
   });
 
-router.post('/api/properties/sendemail', (req,res)=>{
+router.post('/api/properties/sendemail', async (req,res)=>{
     let name = req.body.name
     let message = req.body.message
 
@@ -141,8 +143,9 @@ router.post('/api/properties/sendemail', (req,res)=>{
         text: message,
     };
 
+    
     console.log("sending email")
-    transport.sendMail(mail, (err, data)=>{
+    await transport.sendMail(mail, (err, data)=>{
         if(err){
             console.log(err)
             res.json({msg: `fail ${err}`})
