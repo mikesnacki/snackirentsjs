@@ -27,7 +27,7 @@ const Properties =()=> {
 
     const { width } = useWindowDimensions();
     const iconSize = width / 400 + 26;
-    
+    console.log(properties)
     const res = useFetch(`/api/properties`)
     if (!res.error) { 
         properties = res.response

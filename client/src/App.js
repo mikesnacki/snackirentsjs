@@ -8,7 +8,7 @@ import Loading from "./components/Loading"
 
 const Properties = React.lazy(()=> import("./components/Properties"))
 const Login = React.lazy(()=> import("./components/Login"))
-const AdminForm = React.lazy(()=> import('./components/Admin'))
+const Admin = React.lazy(()=> import('./components/Admin'))
 
 function App() {
 
@@ -20,7 +20,7 @@ function App() {
           <Route path="/" exact component={Home}/>
           <Route path="/properties" exact component={Properties}/>
           <Route path="/login" component={Login}/>
-          <Route path="/admin" component={AdminForm}/>
+          <Route path="/admin" component={Admin}/>
         </Router>
       </Suspense>
     </div>

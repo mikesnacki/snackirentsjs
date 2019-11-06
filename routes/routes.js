@@ -41,7 +41,7 @@ router.route("/api/properties/:id").get((req, res)=>{
 
 router.route("/api/properties/add").post((req, res)=>{
     let property = new Property(req.body);
-
+    
     property.save()
         .then(property=>{
             res.status(200).json({"property": `${property} added successfully`})
@@ -77,6 +77,30 @@ router.route("/api/properties/edit/:id").post((req, res)=>{
             property.propertyDogsAllowed = req.body.propertyDogsAllowed
             property.propertyDescription = req.body.propertyDescription;
             property.propertyImage = req.body.propertyImage;
+            property.propertyDeleted = false;
+
+            property.save()
+            .then(property=>{
+                res.json(`Property ${property} updated`)
+            })
+            .catch(err=>{
+                console.log(err)
+                res.status(400).send(`Error ${err}`)
+            })
+        }
+    })
+})
+
+router.route("/api/properties/delete/:id").delete((req, res)=>{
+    // Property.findByIdAndDelete(id, function(err, property){
+    //     (err) ? console.log(err) : res.json(property)
+    // })
+
+    Property.findById(req.params.id, (err, property)=>{
+        if (!property){
+            res.status(404).send(`Data is not found! error: ${err}`)
+        } else {
+            property.propertyDeleted = true;
 
             property.save()
             .then(property=>{
@@ -86,13 +110,6 @@ router.route("/api/properties/edit/:id").post((req, res)=>{
                 res.status(400).send(`Error ${err}`)
             })
         }
-    })
-})
-
-router.route("/api/properties/delete/:id").delete((req, res)=>{
-    let id = req.params.id;
-    Property.findByIdAndDelete(id, function(err, property){
-        (err) ? console.log(err) : res.json(property)
     })
 })
 
