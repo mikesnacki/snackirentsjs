@@ -72,7 +72,7 @@ export default function Modal({ displayModal, show, property }) {
             <button
                 className="modal-button"
                 onClick={submitForm}>
-                <FaTimes/>
+                Send
             </button>
         </div>
     )
