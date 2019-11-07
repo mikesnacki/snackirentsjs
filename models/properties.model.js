@@ -23,7 +23,10 @@ let Property = new Schema({
     propertyDogsAllowed: Boolean,
     propertyDescription: String,
     propertyImage: String,
-    propertyDeleted: Boolean
+    propertyDeleted: {
+        type: Boolean,
+        default: false
+    }
 });
 
 module.exports = mongoose.model("Property", Property);

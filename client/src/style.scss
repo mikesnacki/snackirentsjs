@@ -405,7 +405,7 @@ select.admin-inputs {
   background-color: white;
   border-radius: 5px;
   padding: 1vh 0.2vw;
-  input{
+  input, select{
     border-radius: 5px;
     border: 2px solid $tertiary-color;
     text-align: center;

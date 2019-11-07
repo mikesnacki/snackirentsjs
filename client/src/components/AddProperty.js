@@ -195,22 +195,22 @@ const AddProperty =({newPropData, handleChange, handleSubmit})=> {
                         <label>Cats Allowed</label>
                         <select name="propertyCatsAllowed"  
                         className="admin-inputs" 
-                        value={newPropData.propertyCatsAllowed} 
+                        defaultValue={newPropData.propertyCatsAllowed} 
                         onChange={handleChange}>
                             <option value="Select">Select</option>
-                            <option value="No">false</option>
-                            <option value="Yes">true</option>
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
                         </select>
                     </div>
                     <div className="flex-col fill-width">
                         <label>Dogs Allowed</label>
                         <select name="propertyDogsAllowed" 
                         className="admin-inputs" 
-                        value={newPropData.propertyDogsAllowed} 
+                        defaultValue={newPropData.propertyDogsAllowed} 
                         onChange={handleChange}>
                             <option value="Select">Select</option>
-                            <option value="No">false</option>
-                            <option value="Yes">true</option>
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
                         </select>
                     </div>
                     <div className="flex-col fill-width">

@@ -33,6 +33,7 @@ const Admin =()=> {
         propertyDogsAllowed: "",
         propertyDescription: "",
         propertyImage: "",
+        propertyDeleted: false,
     }
 
     const [newPropData, setNewPropData]= useState(initialState)
@@ -49,7 +50,7 @@ const Admin =()=> {
         }))
         console.log(newPropData)
     }
-    
+
     const handleSubmit=async (e)=>{
         e.preventDefault()
         const newProperty = {...newPropData}
@@ -60,6 +61,8 @@ const Admin =()=> {
             .catch(err=>console.log(err))
 
         setNewPropData({...initialState})
+        setAdminAction("added")
+        setUpdateModal(true)
     }
 
     const closeUpdateModal=()=>{
