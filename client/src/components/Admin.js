@@ -1,9 +1,9 @@
-﻿import React, {useState} from 'react';
+﻿import React, { useState } from 'react';
 import AddProperty from "./AddProperty"
 import EditProperties from './EditProperties'
 import UpdateModal from './UpdateModal';
 import axios from 'axios';
-import {useFetch} from "../utilhooks/useFetch"
+import { useFetch } from "../utilhooks/useFetch"
 
 const Admin =()=> {  
     let properties = []
@@ -48,7 +48,11 @@ const Admin =()=> {
             ...prevState,
             [name]: value,
         }))
-        console.log(newPropData)
+    }
+
+    const showModal =(action)=>{
+        setAdminAction(action)
+        setUpdateModal(true)
     }
 
     const handleSubmit=async (e)=>{
@@ -58,9 +62,11 @@ const Admin =()=> {
         await axios
             .post(`/api/properties/add`, newProperty)
             .then(res=> console.log(res.data))
+            .then(properties.push(newProperty))
             .catch(err=>console.log(err))
 
         setNewPropData({...initialState})
+
         setAdminAction("added")
         setUpdateModal(true)
     }
@@ -80,6 +86,7 @@ const Admin =()=> {
             />
             <EditProperties
                 properties={properties}
+                showModal={showModal}
             />
             <UpdateModal
                 show={updateModal}

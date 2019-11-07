@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {Tooltip} from "./Tooltip"
 
-export const Property=({property})=> {
+export const Property=({property, showModal})=> {
     
     const propertyData = {
         propertyName: property.propertyName,
@@ -41,12 +41,13 @@ export const Property=({property})=> {
 
     const deleteProperty= async (id)=>{
         await axios.delete(`/api/properties/delete/${id}`)
+        showModal("deleted")
    }
    
    const editProperty= async (id)=>{
        const editedPropertyData = {...propData}
-       console.log(editedPropertyData)
        await axios.post(`/api/properties/edit/${id}`, editedPropertyData)
+       showModal("updated")
    }
 
     return(
@@ -247,17 +248,18 @@ export const Property=({property})=> {
     )
 }
 
-const EditProperties = ({properties})=>{
+const EditProperties = ({properties, showModal})=>{
 
     return(
         <div className="admin">
         <h3 className="align-center">Edit Properties</h3>
            {
                (properties.length > 0 || properties.length != null)  ?
-               properties.filter(property=> property.propertyDeleted===true || property.propertyDeleted===false).map((property, index)=>(
+               properties.filter(property=>  property.propertyDeleted===false).map((property, index)=>(
                 <Property
                     key={index} 
                     property={property}
+                    showModal={showModal}
                 />
            ))
            : <p>Loading...</p>

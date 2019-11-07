@@ -1,5 +1,6 @@
  
 import React, {useState, useRef } from 'react'
+import { FaTimes } from 'react-icons/fa';
 import axios from 'axios';
 
 export default function Modal({ displayModal, show, property }) {
@@ -71,7 +72,7 @@ export default function Modal({ displayModal, show, property }) {
             <button
                 className="modal-button"
                 onClick={submitForm}>
-                Send
+                <FaTimes/>
             </button>
         </div>
     )

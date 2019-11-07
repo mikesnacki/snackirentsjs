@@ -1,6 +1,6 @@
  
 import React, { useRef } from 'react'
-import { FaCheck } from 'react-icons/fa';
+import { FaCheck, FaTimes } from 'react-icons/fa';
 
 export default function UpdateModal({ adminAction, show, closeUpdateModal }) {
 
@@ -31,6 +31,7 @@ export default function UpdateModal({ adminAction, show, closeUpdateModal }) {
             <button
                     className="modal-button align-right-button"
                     onClick={closeUpdateModal}>
+            <FaTimes/>
             </button>
                 <h3>{status}</h3>
                 <FaCheck/>

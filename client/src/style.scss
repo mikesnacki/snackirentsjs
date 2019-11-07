@@ -515,6 +515,7 @@ select.admin-inputs {
   color: $tertiary-color;
   border: 2px solid $tertiary-color;
   border-radius: 5px;
+  margin: auto;
 }
 
 .align-right-button{
@@ -677,7 +678,6 @@ select.admin-inputs {
   background-color:  $tertiary-color;
   border: 3px solid $fourth-color;
   color: $fourth-color;
-  opacity: 90%;
 }
 
 /*----------------------------- SLIDER STYLING -----------------------------*/
