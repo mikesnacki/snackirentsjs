@@ -1,6 +1,5 @@
  
 import React, {useState, useRef } from 'react'
-import { FaTimes } from 'react-icons/fa';
 import axios from 'axios';
 
 export default function Modal({ displayModal, show, property }) {

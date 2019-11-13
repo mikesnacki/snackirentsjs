@@ -1,4 +1,4 @@
-﻿import React, {useState} from 'react';
+﻿import React, { useState } from 'react';
 import { FaCat, FaDog, } from 'react-icons/fa';
 import { useWindowDimensions } from "../utilhooks/useWindowDim"
 import {useFetch} from "../utilhooks/useFetch"
@@ -17,18 +17,19 @@ const Properties =()=> {
                                                     userRentMax: 1445,
                                                     userSqftMin: 625,
                                                     userSqftMax: 980,
-                                                    absRentMin: 825,
-                                                    absRentMax: 1445,
-                                                    absSqftMin: 625,
-                                                    absSqftMax: 980,
+                                                    absRentMin: 800,
+                                                    absRentMax: 1600,
+                                                    absSqftMin: 600,
+                                                    absSqftMax: 1200,
                                                     propertyCatsAllowed: false,
                                                     propertyDogsAllowed: false,
                                                 })
 
     const { width } = useWindowDimensions();
     const iconSize = width / 400 + 26;
-    console.log(properties)
+
     const res = useFetch(`/api/properties`)
+
     if (!res.error) { 
         properties = res.response
         properties = properties.filter(property => 
@@ -42,6 +43,7 @@ const Properties =()=> {
             && (property.propertyStudioSqft < selections.userSqftMax||  property.propertyOneBedroomSqft < selections.userSqftMax)
             && (+property.propertyStudioRent > +selections.userRentMin || property.propertyOneBedroomRent > selections.userRentMin)
             && (+property.propertyStudioRent < +selections.userRentMax || property.propertyOneBedroomRent < selections.userRentMax)
+            && (property.propertyDeleted === false)
             )
      } else {
         return(
@@ -77,7 +79,7 @@ const Properties =()=> {
                     <img 
                     src={prop.propertyImage} 
                     alt={`${prop.propertyName} is a gorgeous and affordable residence`}
-                    style={{width: 200, height: 200, marginTop:20, borderRadius:5,}}
+                    style={{ width: "114%", marginTop: 0.2, height: 200, borderRadius:"3px 3px 0 0",}}
                     ></img>
                     <h2 value="propertyName">{prop.propertyName}</h2>
                     <p>{prop.propertyAddress}</p>
