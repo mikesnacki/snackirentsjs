@@ -2,5 +2,6 @@
 {
     "mongoURI": "mongodb+srv://mikesnacki:Snatzki1@properties-b2rxo.mongodb.net/test?retryWrites=true&w=majority",
     "username":"snackirents@gmail.com",
-    "password": "snatzkirents1"
+    "password": "snatzkirents1",
+    "gmailpassword": "snackirentsadmin1"
 }

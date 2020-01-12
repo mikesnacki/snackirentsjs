@@ -1,6 +1,6 @@
 const config = require("config");
 const gmailuser = config.get("username")
-const gmailpass = config.get("password")
+const gmailpass = config.get("gmailpassword")
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
@@ -123,23 +123,6 @@ let transport = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 });
-
-// let transport = nodemailer.createTransport({
-//     host: 'smtp.gmail.com',
-//     port: 465,
-//     secure: true,
-//     auth: {
-//         type: 'OAuth2',
-//         user: process.env.USER,
-//         clientId: process.env.CLIENTID,
-//         clientSecret: process.env.CLIENTSECRET,
-//         refreshToken: process.env.REFRESHTOKEN,
-//         accessToken: process.env.ACCESSTOKEN,
-//     },
-//     tls: {
-//         rejectUnauthorized: false
-//     }
-// });
 
 transport.verify((error, success) => {
     if (error) {
