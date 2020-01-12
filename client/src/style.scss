@@ -642,14 +642,13 @@ select.admin-inputs {
 
 /*----------------------------- MENU STYLING -----------------------------*/
 .arrow{
-  margin: 26px auto 18px;
-  padding: 0.75vh;
+  margin: 20px auto;
   border: 6px solid $primary-color;
   border-radius: 3px;
   border-top: none;
   border-right: none;
-  width: 40px;
-  height: 40px;
+  width: 26px;
+  height: 26px;
   background-color: transparent;
 }
 
@@ -756,7 +755,6 @@ select.admin-inputs {
 }
 
 .property-filters-false-narrow{
-  height: 130px;
   width: 320px;
 }
 
@@ -767,6 +765,11 @@ select.admin-inputs {
 
 .property-filters-true-wide{
   animation: 500ms ease-out menu-out;
+}
+
+.property-filters-header {
+  margin: 6px auto;
+  padding: 0px;
 }
 
 .modal-update {

@@ -45,7 +45,7 @@ const Menu =({selections, setSelections})=>{
             ref ={menuRef} 
             className={`property-filters property-filters-${menu}-${displaySizes}`}
             >
-            <h2 className="flex-row-text-center">{menu ? `Property Filters` : `Click to show property filters`}</h2>
+            <h2 className="flex-row-text-center property-filters-header">{menu ? `Property Filters` : `Click to show property filters`}</h2>
             {
                 menu && (
                     <div className="flex-row margin-top space-evenly flex-row-center align-baseline">
